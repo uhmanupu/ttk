@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
   <style>
     :root {
       --cor-primaria: #2e7d32;
@@ -104,18 +106,16 @@
       min-height: calc(100vh - 120px);
       padding: 4rem 0;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 0.8s forwards;
     }
 
     .page.active {
       display: block;
+      animation: fadeIn 0.8s forwards;
     }
 
     @keyframes fadeIn {
       to {
         opacity: 1;
-        transform: translateY(0);
       }
     }
 
@@ -214,6 +214,36 @@
       box-shadow: 0 6px 25px rgba(46, 125, 50, 0.6);
     }
 
+    /* Formulário */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid var(--cor-vidro-borda);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cor-texto);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-control::placeholder {
+      color: var(--cor-texto-secundaria);
+    }
+
+    textarea.form-control {
+      min-height: 120px;
+      resize: vertical;
+    }
+
     /* Carrinho */
     #cart-container {
       margin-top: 2.5rem;
@@ -300,11 +330,6 @@
         font-size: 2.4rem;
       }
     }
-
-    /* Scroll suave */
-    html {
-      scroll-behavior: smooth;
-    }
   </style>
 </head>
 <body>
@@ -336,7 +361,7 @@
       </div>
 
       <div class="container" style="margin-top: 4rem;">
-        <div class="glass-card" style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <div class="glass-card" style="text-align: center; max-width: 800px; margin: 0 auto;" data-sr>
           <h3 style="color: #a5d6a7; margin-bottom: 1rem;">Por que visitar?</h3>
           <p>Experiências imersivas, atrações sustentáveis, respeito às culturas indígenas e diversão para todas as idades.</p>
         </div>
@@ -346,17 +371,17 @@
     <!-- Página Atrações -->
     <section id="atracoes" class="page">
       <div class="container">
-        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Nossas Atrações</h2>
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;" data-sr> Nossas Atrações </h2>
         <div class="cards">
-          <div class="glass-card">
+          <div class="glass-card" data-sr>
             <h3 class="card-title">Floresta Encantada</h3>
             <p>Trilha sensorial com sons da mata, luzes e aparições de Curupira, Boitatá e outras lendas.</p>
           </div>
-          <div class="glass-card">
+          <div class="glass-card" data-sr>
             <h3 class="card-title">Rio das Onças</h3>
             <p>Montanha-russa aquática com cenário da Amazônia e queda de 15 metros!</p>
           </div>
-          <div class="glass-card">
+          <div class="glass-card" data-sr>
             <h3 class="card-title">Aldeia Tupinambá</h3>
             <p>Oficinas de pintura corporal, cerâmica, danças e contação de histórias indígenas.</p>
           </div>
@@ -364,25 +389,25 @@
       </div>
     </section>
 
-    <!-- Página Ingressos (com carrinho) -->
+    <!-- Página Ingressos -->
     <section id="ingressos" class="page">
       <div class="container">
-        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Compre Seus Ingressos</h2>
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;" data-sr> Compre Seus Ingressos </h2>
 
         <div class="cards">
-          <div class="glass-card" style="text-align: center;">
+          <div class="glass-card" style="text-align: center;" data-sr>
             <h3 class="card-title">Adulto</h3>
             <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 89,90</p>
             <p>13 anos ou mais</p>
             <button class="btn add-to-cart" data-type="adulto" style="margin-top: 1rem;">Adicionar</button>
           </div>
-          <div class="glass-card" style="text-align: center;">
+          <div class="glass-card" style="text-align: center;" data-sr>
             <h3 class="card-title">Criança</h3>
             <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 59,90</p>
             <p>3 a 12 anos</p>
             <button class="btn add-to-cart" data-type="criança" style="margin-top: 1rem;">Adicionar</button>
           </div>
-          <div class="glass-card" style="text-align: center;">
+          <div class="glass-card" style="text-align: center;" data-sr>
             <h3 class="card-title">Combo Família</h3>
             <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 249,90</p>
             <p>2 adultos + 2 crianças</p>
@@ -390,8 +415,7 @@
           </div>
         </div>
 
-        <!-- Carrinho -->
-        <div id="cart-container" class="glass-card">
+        <div id="cart-container" class="glass-card" data-sr>
           <h3 style="color: #a5d6a7; margin-bottom: 1.5rem; text-align: center;">Seu Carrinho</h3>
           <div id="cart-items"></div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--cor-vidro-borda);">
@@ -400,7 +424,6 @@
           </div>
         </div>
 
-        <!-- Modal de confirmação -->
         <div id="checkout-modal">
           <div>
             <h3 style="color: #a5d6a7;">Compra Finalizada!</h3>
@@ -417,17 +440,31 @@
     <!-- Página Contato -->
     <section id="contato" class="page">
       <div class="container">
-        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Contato</h2>
-        <div class="glass-card" style="max-width: 700px; margin: 0 auto; text-align: center;">
-          <p style="font-size: 1.15rem; margin-bottom: 1.5rem;">
-            Estamos à disposição para tornar sua visita inesquecível.
-          </p>
-          <div style="margin: 1.5rem 0;">
-            <p>📧 contato@pindoromapark.com.br</p>
-            <p>📞 (11) 98765-4321</p>
-            <p>🕒 Funcionamento: Qua a Dom, 9h às 18h</p>
-          </div>
-          <p style="margin-top: 1.5rem; font-size: 1rem; color: var(--cor-texto-secundaria);">
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;" data-sr> Fale Conosco </h2>
+        <div class="glass-card" style="max-width: 700px; margin: 0 auto;" data-sr>
+          <form id="contact-form" action="https://formspree.io/f/seu-form-id" method="POST">
+            <div class="form-group">
+              <label for="name">Nome completo</label>
+              <input type="text" id="name" name="nome" class="form-control" required placeholder="Ex: Maria Silva">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
+            </div>
+            <div class="form-group">
+              <label for="message">Mensagem</label>
+              <textarea id="message" name="mensagem" class="form-control" required placeholder="Como podemos ajudar?"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
+          </form>
+          <div id="form-message" style="margin-top: 1rem; text-align: center; display: none;"></div>
+        </div>
+
+        <div class="glass-card" style="max-width: 700px; margin: 2.5rem auto 0; text-align: center;" data-sr>
+          <p style="font-size: 1.15rem; margin-bottom: 1.5rem;">Ou nos encontre aqui:</p>
+          <p>📞 (11) 98765-4321</p>
+          <p>🕒 Qua a Dom, 9h às 18h</p>
+          <p style="margin-top: 1.5rem; color: var(--cor-texto-secundaria);">
             Rodovia SP-350, km 128 – Parque Ecológico Pindorama, SP
           </p>
           <div class="map-container">
@@ -449,11 +486,19 @@
   </footer>
 
   <script>
+    // ScrollReveal
+    ScrollReveal().reveal('[data-sr]', {
+      duration: 800,
+      distance: '30px',
+      easing: 'cubic-bezier(0.5, 0, 0, 1)',
+      origin: 'bottom',
+      interval: 150,
+      reset: false
+    });
+
     // Navegação SPA
     function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
       history.pushState({page: pageId}, '', `#${pageId}`);
     }
@@ -467,7 +512,6 @@
       });
     });
 
-    // Suporte para botão voltar do navegador
     window.addEventListener('popstate', (e) => {
       const page = window.location.hash.slice(1) || 'home';
       showPage(page);
@@ -478,13 +522,12 @@
       document.querySelector('.menu').classList.toggle('active');
     });
 
-    // --- Carrinho ---
+    // Carrinho
     const produtos = {
       adulto: { nome: "Adulto", preco: 89.90 },
       criança: { nome: "Criança", preco: 59.90 },
       combo: { nome: "Combo Família", preco: 249.90 }
     };
-
     let carrinho = [];
 
     function atualizarCarrinho() {
@@ -549,15 +592,52 @@
       atualizarCarrinho();
     });
 
-    // Inicializa página com base na URL
+    // Formulário de contato com feedback
+    const form = document.getElementById('contact-form');
+    const messageDiv = document.getElementById('form-message');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(response => {
+          if (response.ok) {
+            messageDiv.style.color = '#a5d6a7';
+            messageDiv.textContent = 'Mensagem enviada com sucesso! Em breve responderemos.';
+            form.reset();
+          } else {
+            throw new Error('Erro no envio.');
+          }
+        })
+        .catch(() => {
+          messageDiv.style.color = '#f44336';
+          messageDiv.textContent = 'Ops! Ocorreu um erro. Tente novamente mais tarde.';
+        })
+        .finally(() => {
+          messageDiv.style.display = 'block';
+          setTimeout(() => messageDiv.style.display = 'none', 5000);
+        });
+      });
+    }
+
+    // Inicializa página
     window.addEventListener('load', () => {
       const hash = window.location.hash.slice(1);
-      if (['home','atracoes','ingressos','contato'].includes(hash)) {
-        showPage(hash);
-      } else {
-        showPage('home');
-      }
+      showPage(['home','atracoes','ingressos','contato'].includes(hash) ? hash : 'home');
     });
+  </script>
+
+  <!-- Substitua "seu-form-id" pelo seu ID real do Formspree -->
+  <script>
+    // NOTA: Para usar o formulário:
+    // 1. Acesse https://formspree.io/
+    // 2. Crie uma conta e conecte seu e-mail
+    // 3. Copie o endpoint (ex: https://formspree.io/f/xyz123)
+    // 4. Substitua "seu-form-id" acima por "xyz123"
   </script>
 </body>
 </html>
