@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Pindorama Park – Immersive theme park inspired by ancestral Brazil." />
+  <meta name="description" content="Pindorama Park – Parque temático imersivo no coração do Brasil ancestral." />
   <title>Pindorama Park</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
   <style>
     :root {
       --cor-primaria: #2e7d32;
@@ -35,17 +33,6 @@
       color: var(--cor-texto);
       line-height: 1.6;
       overflow-x: hidden;
-      position: relative;
-    }
-
-    #tsparticles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
     }
 
     .container {
@@ -53,8 +40,6 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
-      position: relative;
-      z-index: 2;
     }
 
     header {
@@ -96,8 +81,6 @@
       text-decoration: none;
       font-weight: 600;
       padding: 0.4rem 0;
-      position: relative;
-      transition: color 0.3s;
     }
 
     .menu a:hover {
@@ -123,45 +106,30 @@
       cursor: pointer;
     }
 
+    main {
+      min-height: calc(100vh - 200px);
+    }
+
     .page {
       display: none;
-      min-height: calc(100vh - 120px);
       padding: 4rem 0;
-      opacity: 0;
-      transition: opacity 0.5s ease;
     }
 
     .page.active {
       display: block;
-      opacity: 1;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .hero {
       text-align: center;
       padding: 6rem 1rem;
-      background: url('https://source.unsplash.com/1600x900/?amazon-forest,brazil-jungle') center/cover no-repeat;
-      background-attachment: fixed;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(10, 25, 13, 0.7), rgba(10, 25, 13, 0.9));
-      z-index: -1;
-    }
-
-    .hero-content {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-      z-index: 2;
+      background: linear-gradient(rgba(10,25,13,0.8), rgba(10,25,13,0.9)), url('https://source.unsplash.com/1600x900/?brazilian-forest') center/cover no-repeat;
+      margin-bottom: 3rem;
     }
 
     .hero h2 {
@@ -188,19 +156,13 @@
       border-radius: 20px;
       padding: 2rem;
       box-shadow: var(--sombra-suave);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .glass-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 2rem;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      margin-top: 2rem;
     }
 
     .card-title {
@@ -217,16 +179,14 @@
       text-decoration: none;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 1.05rem;
-      transition: all 0.3s ease;
+      transition: all 0.3s;
       border: none;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(46, 125, 50, 0.4);
     }
 
     .btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 25px rgba(46, 125, 50, 0.6);
+      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.5);
     }
 
     .form-group {
@@ -246,7 +206,6 @@
       border: 1px solid var(--cor-vidro-borda);
       background: rgba(255, 255, 255, 0.08);
       color: var(--cor-texto);
-      font-family: 'Inter', sans-serif;
     }
 
     .form-control::placeholder {
@@ -258,73 +217,9 @@
       resize: vertical;
     }
 
-    #pix-section {
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    #pix-qr {
-      width: 180px;
-      height: 180px;
-      margin: 1rem auto;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .copy-btn {
-      background: rgba(46, 125, 50, 0.2);
-      color: #a5d6a7;
-      border: 1px solid var(--cor-vidro-borda);
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 0.5rem;
-      font-size: 0.95rem;
-      transition: background 0.3s;
-    }
-
-    .copy-btn:hover {
-      background: rgba(76, 175, 80, 0.3);
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #2e7d32;
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      z-index: 3000;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.3s;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     #cart-container {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       display: none;
-    }
-
-    .map-container {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--sombra-suave);
-      margin-top: 1.5rem;
-    }
-
-    iframe {
-      border: none;
     }
 
     footer {
@@ -336,37 +231,13 @@
       border-top: 1px solid var(--cor-vidro-borda);
     }
 
-    #checkout-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #checkout-modal > div {
-      background: var(--cor-vidro);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--cor-vidro-borda);
-      border-radius: 20px;
-      padding: 2.5rem;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
-    }
-
     @media (max-width: 768px) {
       .menu {
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(10, 25, 13, 0.9);
+        background: rgba(10, 25, 13, 0.95);
         flex-direction: column;
         padding: 1rem 0;
         display: none;
@@ -387,27 +258,21 @@
       .menu-toggle {
         display: block;
       }
-
-      .hero h2 {
-        font-size: 2.4rem;
-      }
     }
   </style>
 </head>
 <body>
 
-  <div id="tsparticles"></div>
-
   <header>
     <div class="container">
       <h1>Pindorama Park</h1>
       <nav>
-        <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+        <button class="menu-toggle" aria-label="Alternar menu">&#9776;</button>
         <ul class="menu">
-          <li><a href="#" class="nav-link" data-page="home" data-key="nav_home">Início</a></li>
-          <li><a href="#" class="nav-link" data-page="atracoes" data-key="nav_attractions">Atrações</a></li>
-          <li><a href="#" class="nav-link" data-page="ingressos" data-key="nav_tickets">Ingressos</a></li>
-          <li><a href="#" class="nav-link" data-page="contato" data-key="nav_contact">Contato</a></li>
+          <li><a href="#home" class="nav-link">Início</a></li>
+          <li><a href="#atracoes" class="nav-link">Atrações</a></li>
+          <li><a href="#ingressos" class="nav-link">Ingressos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
           <li>
             <select class="lang-selector" id="lang-select">
               <option value="pt">PT</option>
@@ -422,19 +287,18 @@
 
   <main>
     <!-- Home -->
-    <section id="home" class="page">
+    <section id="home" class="page active">
       <div class="hero">
-        <div class="hero-content">
-          <h2 data-key="hero_title">Bem-vindo ao Pindorama Park</h2>
-          <p data-key="hero_subtitle">Um reino místico onde a natureza, mitologia e diversão se fundem em uma jornada ancestral brasileira.</p>
-          <a href="#" class="btn nav-link" data-page="ingressos" data-key="buy_tickets">Compre seus ingressos</a>
+        <div class="container">
+          <h2>Bem-vindo ao Pindorama Park</h2>
+          <p>Um reino místico onde a natureza, mitologia e diversão se fundem em uma jornada ancestral brasileira.</p>
+          <a href="#ingressos" class="btn nav-link">Compre seus ingressos</a>
         </div>
       </div>
-
-      <div class="container" style="margin-top: 4rem;">
-        <div class="glass-card" style="text-align: center; max-width: 800px; margin: 0 auto;" data-sr>
-          <h3 data-key="why_visit" style="color: #a5d6a7; margin-bottom: 1rem;">Por que visitar?</h3>
-          <p data-key="why_visit_desc">Experiências imersivas, atrações sustentáveis, respeito às culturas indígenas e diversão para todas as idades.</p>
+      <div class="container">
+        <div class="glass-card">
+          <h3 style="color: #a5d6a7;">Por que visitar?</h3>
+          <p>Experiências imersivas, atrações sustentáveis, respeito às culturas indígenas e diversão para todas as idades.</p>
         </div>
       </div>
     </section>
@@ -442,19 +306,19 @@
     <!-- Atrações -->
     <section id="atracoes" class="page">
       <div class="container">
-        <h2 data-key="attractions_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Nossas Atrações</h2>
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Nossas Atrações</h2>
         <div class="cards">
-          <div class="glass-card" data-sr>
-            <h3 class="card-title" data-key="attraction1_title">Floresta Encantada</h3>
-            <p data-key="attraction1_desc">Trilha sensorial com sons da mata, luzes e aparições de Curupira, Boitatá e outras lendas.</p>
+          <div class="glass-card">
+            <h3 class="card-title">Floresta Encantada</h3>
+            <p>Trilha sensorial com sons da mata, luzes e aparições de Curupira, Boitatá e outras lendas.</p>
           </div>
-          <div class="glass-card" data-sr>
-            <h3 class="card-title" data-key="attraction2_title">Rio das Onças</h3>
-            <p data-key="attraction2_desc">Montanha-russa aquática com cenário da Amazônia e queda de 15 metros!</p>
+          <div class="glass-card">
+            <h3 class="card-title">Rio das Onças</h3>
+            <p>Montanha-russa aquática com cenário da Amazônia e queda de 15 metros!</p>
           </div>
-          <div class="glass-card" data-sr>
-            <h3 class="card-title" data-key="attraction3_title">Aldeia Tupinambá</h3>
-            <p data-key="attraction3_desc">Oficinas de pintura corporal, cerâmica, danças e contação de histórias indígenas.</p>
+          <div class="glass-card">
+            <h3 class="card-title">Aldeia Tupinambá</h3>
+            <p>Oficinas de pintura corporal, cerâmica, danças e contação de histórias indígenas.</p>
           </div>
         </div>
       </div>
@@ -463,56 +327,34 @@
     <!-- Ingressos -->
     <section id="ingressos" class="page">
       <div class="container">
-        <h2 data-key="tickets_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Compre Seus Ingressos</h2>
-
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Compre Seus Ingressos</h2>
         <div class="cards">
-          <div class="glass-card" style="text-align: center;" data-sr>
-            <h3 class="card-title" data-key="adult">Adulto</h3>
-            <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 89,90</p>
-            <p data-key="adult_desc">13 anos ou mais</p>
-            <button class="btn add-to-cart" data-type="adulto" data-key="add_to_cart">Adicionar</button>
+          <div class="glass-card" style="text-align: center;">
+            <h3 class="card-title">Adulto</h3>
+            <p style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 89,90</p>
+            <p>13 anos ou mais</p>
+            <button class="btn add-to-cart" data-type="adulto">Adicionar</button>
           </div>
-          <div class="glass-card" style="text-align: center;" data-sr>
-            <h3 class="card-title" data-key="child">Criança</h3>
-            <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 59,90</p>
-            <p data-key="child_desc">3 a 12 anos</p>
-            <button class="btn add-to-cart" data-type="criança" data-key="add_to_cart">Adicionar</button>
+          <div class="glass-card" style="text-align: center;">
+            <h3 class="card-title">Criança</h3>
+            <p style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 59,90</p>
+            <p>3 a 12 anos</p>
+            <button class="btn add-to-cart" data-type="criança">Adicionar</button>
           </div>
-          <div class="glass-card" style="text-align: center;" data-sr>
-            <h3 class="card-title" data-key="family_combo">Combo Família</h3>
-            <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 249,90</p>
-            <p data-key="combo_desc">2 adultos + 2 crianças</p>
-            <button class="btn add-to-cart" data-type="combo" data-key="add_to_cart">Adicionar</button>
+          <div class="glass-card" style="text-align: center;">
+            <h3 class="card-title">Combo Família</h3>
+            <p style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 249,90</p>
+            <p>2 adultos + 2 crianças</p>
+            <button class="btn add-to-cart" data-type="combo">Adicionar</button>
           </div>
         </div>
 
         <div id="cart-container" class="glass-card">
-          <h3 data-key="your_cart" style="color: #a5d6a7; margin-bottom: 1.5rem; text-align: center;">Seu Carrinho</h3>
+          <h3 style="color: #a5d6a7; margin-bottom: 1rem;">Seu Carrinho</h3>
           <div id="cart-items"></div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--cor-vidro-borda);">
-            <strong data-key="total">Total: <span id="cart-total">R$ 0,00</span></strong>
-            <button id="checkout-btn" class="btn" style="background: linear-gradient(120deg, #d32f2f, #f44336);" data-key="finalize_purchase">Finalizar Compra</button>
-          </div>
-        </div>
-
-        <div id="pix-section" class="glass-card">
-          <h3 data-key="pay_with_pix" style="color: #a5d6a7; margin-bottom: 1rem;">Pague com PIX</h3>
-          <p data-key="pix_instructions">Escaneie o QR Code ou copie a chave abaixo:</p>
-          <div id="pix-qr">QR Code PIX<br>(simulado)</div>
-          <div style="font-size: 0.9rem; margin: 0.5rem 0; word-break: break-all;">
-            pindorama@park.com.br
-          </div>
-          <button class="copy-btn" onclick="copiarChavePIX()" data-key="copy_pix_key">Copiar Chave PIX</button>
-        </div>
-
-        <div id="checkout-modal">
-          <div>
-            <h3 data-key="purchase_success" style="color: #a5d6a7;">Compra Finalizada!</h3>
-            <p data-key="purchase_success_msg">
-              Sua compra foi registrada com sucesso!<br>
-              Em breve entraremos em contato para confirmação.
-            </p>
-            <button id="close-modal" class="btn" data-key="ok_understood">Ok, Entendi</button>
+            <strong>Total: <span id="cart-total">R$ 0,00</span></strong>
+            <button id="checkout-btn" class="btn" style="background: linear-gradient(120deg, #d32f2f, #f44336);">Finalizar Compra</button>
           </div>
         </div>
       </div>
@@ -521,39 +363,24 @@
     <!-- Contato -->
     <section id="contato" class="page">
       <div class="container">
-        <h2 data-key="contact_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Fale Conosco</h2>
-        <div class="glass-card" style="max-width: 700px; margin: 0 auto;" data-sr>
+        <h2 style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Fale Conosco</h2>
+        <div class="glass-card">
           <form id="contact-form" action="https://formspree.io/f/xgvgbljj" method="POST">
             <div class="form-group">
-              <label for="name" data-key="full_name">Nome completo</label>
-              <input type="text" id="name" name="nome" class="form-control" required>
+              <label for="name">Nome completo</label>
+              <input type="text" id="name" name="nome" class="form-control" required placeholder="Ex: Maria Silva">
             </div>
             <div class="form-group">
-              <label for="email" data-key="email">E-mail</label>
-              <input type="email" id="email" name="email" class="form-control" required>
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
             </div>
             <div class="form-group">
-              <label for="message" data-key="message">Mensagem</label>
-              <textarea id="message" name="mensagem" class="form-control" required></textarea>
+              <label for="message">Mensagem</label>
+              <textarea id="message" name="mensagem" class="form-control" required placeholder="Como podemos ajudar?"></textarea>
             </div>
-            <button type="submit" class="btn" style="width: 100%;" data-key="send_message">Enviar Mensagem</button>
+            <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
           </form>
-          <div id="form-message" style="margin-top: 1rem; text-align: center; display: none;"></div>
-        </div>
-
-        <div class="glass-card" style="max-width: 700px; margin: 2.5rem auto 0; text-align: center;" data-sr>
-          <p data-key="or_find_us" style="font-size: 1.15rem; margin-bottom: 1.5rem;">Ou nos encontre aqui:</p>
-          <p>📞 (11) 98765-4321</p>
-          <p>🕒 Qua a Dom, 9h às 18h</p>
-          <p style="margin-top: 1.5rem; color: var(--cor-texto-secundaria);">
-            Rodovia SP-350, km 128 – Parque Ecológico Pindorama, SP
-          </p>
-          <div class="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.123456789012!2d-47.40234567890123!3d-22.301234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDE4JzA0LjUiUyA0N8KwMjQnMDguNSJX!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"
-              width="100%" height="250" allowfullscreen loading="lazy">
-            </iframe>
-          </div>
+          <div id="form-message" style="margin-top: 1rem; text-align: center; display: none; color: #a5d6a7;"></div>
         </div>
       </div>
     </section>
@@ -562,257 +389,49 @@
   <footer>
     <div class="container">
       <p>&copy; 2025 Pindorama Park. Todos os direitos reservados.</p>
-      <p data-key="footer_desc">Inspirado na sabedoria ancestral e na riqueza do Brasil.</p>
+      <p>Inspirado na sabedoria ancestral e na riqueza do Brasil.</p>
     </div>
   </footer>
 
-  <div id="toast" class="toast">Chave PIX copiada!</div>
-
   <script>
-    // === TRADUÇÕES ===
-    const translations = {
-      pt: {
-        nav_home: "Início",
-        nav_attractions: "Atrações",
-        nav_tickets: "Ingressos",
-        nav_contact: "Contato",
-        hero_title: "Bem-vindo ao Pindorama Park",
-        hero_subtitle: "Um reino místico onde a natureza, mitologia e diversão se fundem em uma jornada ancestral brasileira.",
-        buy_tickets: "Compre seus ingressos",
-        why_visit: "Por que visitar?",
-        why_visit_desc: "Experiências imersivas, atrações sustentáveis, respeito às culturas indígenas e diversão para todas as idades.",
-        attractions_title: "Nossas Atrações",
-        attraction1_title: "Floresta Encantada",
-        attraction1_desc: "Trilha sensorial com sons da mata, luzes e aparições de Curupira, Boitatá e outras lendas.",
-        attraction2_title: "Rio das Onças",
-        attraction2_desc: "Montanha-russa aquática com cenário da Amazônia e queda de 15 metros!",
-        attraction3_title: "Aldeia Tupinambá",
-        attraction3_desc: "Oficinas de pintura corporal, cerâmica, danças e contação de histórias indígenas.",
-        tickets_title: "Compre Seus Ingressos",
-        adult: "Adulto",
-        adult_desc: "13 anos ou mais",
-        child: "Criança",
-        child_desc: "3 a 12 anos",
-        family_combo: "Combo Família",
-        combo_desc: "2 adultos + 2 crianças",
-        add_to_cart: "Adicionar",
-        your_cart: "Seu Carrinho",
-        total: "Total:",
-        finalize_purchase: "Finalizar Compra",
-        pay_with_pix: "Pague com PIX",
-        pix_instructions: "Escaneie o QR Code ou copie a chave abaixo:",
-        copy_pix_key: "Copiar Chave PIX",
-        purchase_success: "Compra Finalizada!",
-        purchase_success_msg: "Sua compra foi registrada com sucesso!\nEm breve entraremos em contato para confirmação.",
-        ok_understood: "Ok, Entendi",
-        contact_title: "Fale Conosco",
-        full_name: "Nome completo",
-        email: "E-mail",
-        message: "Mensagem",
-        send_message: "Enviar Mensagem",
-        or_find_us: "Ou nos encontre aqui:",
-        footer_desc: "Inspirado na sabedoria ancestral e na riqueza do Brasil."
-      },
-      en: {
-        nav_home: "Home",
-        nav_attractions: "Attractions",
-        nav_tickets: "Tickets",
-        nav_contact: "Contact",
-        hero_title: "Welcome to Pindorama Park",
-        hero_subtitle: "A mystical realm where nature, mythology, and fun merge into an ancestral Brazilian journey.",
-        buy_tickets: "Buy Tickets",
-        why_visit: "Why Visit?",
-        why_visit_desc: "Immersive experiences, sustainable attractions, respect for indigenous cultures, and fun for all ages.",
-        attractions_title: "Our Attractions",
-        attraction1_title: "Enchanted Forest",
-        attraction1_desc: "Sensory trail with jungle sounds, lights, and appearances of Curupira, Boitatá, and other legends.",
-        attraction2_title: "Jaguar River",
-        attraction2_desc: "Amazon-themed water roller coaster with a 15-meter drop!",
-        attraction3_title: "Tupinambá Village",
-        attraction3_desc: "Body painting, pottery, dance workshops, and indigenous storytelling.",
-        tickets_title: "Buy Your Tickets",
-        adult: "Adult",
-        adult_desc: "13 years or older",
-        child: "Child",
-        child_desc: "3 to 12 years",
-        family_combo: "Family Combo",
-        combo_desc: "2 adults + 2 children",
-        add_to_cart: "Add",
-        your_cart: "Your Cart",
-        total: "Total:",
-        finalize_purchase: "Checkout",
-        pay_with_pix: "Pay with PIX",
-        pix_instructions: "Scan the QR Code or copy the key below:",
-        copy_pix_key: "Copy PIX Key",
-        purchase_success: "Purchase Completed!",
-        purchase_success_msg: "Your purchase has been successfully registered!\nWe’ll contact you soon for confirmation.",
-        ok_understood: "Ok, Got It",
-        contact_title: "Contact Us",
-        full_name: "Full Name",
-        email: "Email",
-        message: "Message",
-        send_message: "Send Message",
-        or_find_us: "Or find us here:",
-        footer_desc: "Inspired by ancestral wisdom and the richness of Brazil."
-      },
-      es: {
-        nav_home: "Inicio",
-        nav_attractions: "Atracciones",
-        nav_tickets: "Entradas",
-        nav_contact: "Contacto",
-        hero_title: "Bienvenido a Pindorama Park",
-        hero_subtitle: "Un reino místico donde la naturaleza, la mitología y la diversión se fusionan en un viaje ancestral brasileño.",
-        buy_tickets: "Comprar Entradas",
-        why_visit: "¿Por qué visitarnos?",
-        why_visit_desc: "Experiencias inmersivas, atracciones sostenibles, respeto por las culturas indígenas y diversión para todas las edades.",
-        attractions_title: "Nuestras Atracciones",
-        attraction1_title: "Bosque Encantado",
-        attraction1_desc: "Sendero sensorial con sonidos de la selva, luces y apariciones de Curupira, Boitatá y otras leyendas.",
-        attraction2_title: "Río de las Onces",
-        attraction2_desc: "Montaña rusa acuática ambientada en la Amazonía con una caída de 15 metros.",
-        attraction3_title: "Aldea Tupinambá",
-        attraction3_desc: "Talleres de pintura corporal, cerámica, danzas y narración de historias indígenas.",
-        tickets_title: "Compra tus Entradas",
-        adult: "Adulto",
-        adult_desc: "13 años o más",
-        child: "Niño",
-        child_desc: "3 a 12 años",
-        family_combo: "Combo Familiar",
-        combo_desc: "2 adultos + 2 niños",
-        add_to_cart: "Agregar",
-        your_cart: "Tu Carrito",
-        total: "Total:",
-        finalize_purchase: "Finalizar Compra",
-        pay_with_pix: "Paga con PIX",
-        pix_instructions: "Escanea el código QR o copia la clave a continuación:",
-        copy_pix_key: "Copiar Clave PIX",
-        purchase_success: "¡Compra Finalizada!",
-        purchase_success_msg: "¡Tu compra se registró con éxito!\nPronto nos pondremos en contacto para confirmarla.",
-        ok_understood: "Ok, Entendido",
-        contact_title: "Contáctanos",
-        full_name: "Nombre Completo",
-        email: "Correo Electrónico",
-        message: "Mensaje",
-        send_message: "Enviar Mensaje",
-        or_find_us: "O búscanos aquí:",
-        footer_desc: "Inspirado en la sabiduría ancestral y la riqueza de Brasil."
-      }
-    };
-
-    // === IDIOMA ===
-    let currentLang = localStorage.getItem('lang') || 'pt';
-    
-    function setLanguage(lang) {
-      currentLang = lang;
-      localStorage.setItem('lang', lang);
-      document.getElementById('lang-select').value = lang;
-      
-      document.querySelectorAll('[data-key]').forEach(el => {
-        const key = el.getAttribute('data-key');
-        if (translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-
-      // Atualiza placeholders
-      const placeholders = {
-        pt: { name: "Ex: Maria Silva", email: "seu@email.com", message: "Como podemos ajudar?" },
-        en: { name: "e.g., Maria Silva", email: "your@email.com", message: "How can we help?" },
-        es: { name: "Ej: María Silva", email: "tu@email.com", message: "¿Cómo podemos ayudarte?" }
-      };
-      const p = placeholders[lang];
-      if (p) {
-        document.querySelector('#name').placeholder = p.name;
-        document.querySelector('#email').placeholder = p.email;
-        document.querySelector('#message').placeholder = p.message;
-      }
-    }
-
-    // === NAVEGAÇÃO ===
-    function initScrollReveal() {
-      ScrollReveal().sync(); // limpa instâncias anteriores
-      ScrollReveal().reveal('[data-sr]', {
-        duration: 800,
-        distance: '30px',
-        easing: 'cubic-bezier(0.5, 0, 0, 1)',
-        origin: 'bottom',
-        interval: 150,
-        reset: false
-      });
-    }
-
-    function showPage(pageId) {
+    // === NAVEGAÇÃO SIMPLES E ROBUSTA ===
+    function showPage(id) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const page = document.getElementById(pageId);
-      if (page) {
-        page.classList.add('active');
-        setTimeout(() => {
-          initScrollReveal();
-        }, 300);
-      }
-      history.pushState({page: pageId}, '', `#${pageId}`);
+      const page = document.getElementById(id);
+      if (page) page.classList.add('active');
     }
 
+    // Clique nos links
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const page = link.getAttribute('data-page');
-        showPage(page);
+        const target = link.getAttribute('href').substring(1); // remove #
+        showPage(target);
+        // Fecha menu mobile
         document.querySelector('.menu').classList.remove('active');
       });
     });
 
-    window.addEventListener('popstate', (e) => {
-      const page = window.location.hash.slice(1) || 'home';
-      showPage(page);
-    });
-
-    // === INICIALIZAÇÃO ===
+    // Navegação por URL (ao recarregar)
     window.addEventListener('load', () => {
-      setLanguage(currentLang);
-      
-      const hash = window.location.hash.slice(1);
-      const validPages = ['home', 'atracoes', 'ingressos', 'contato'];
-      const page = validPages.includes(hash) ? hash : 'home';
-      showPage(page);
-
-      // Partículas
-      tsParticles.load("tsparticles", {
-        fpsLimit: 60,
-        particles: {
-          number: { value: 30, density: { enable: true, value_area: 800 } },
-          color: { value: "#4caf50" },
-          shape: { type: "circle" },
-          opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1 } },
-          size: { value: 4, random: true },
-          move: {
-            enable: true,
-            speed: 0.8,
-            direction: "top-right",
-            random: true,
-            straight: false,
-            out_mode: "out",
-            bounce: false
-          }
-        },
-        interactivity: { detect_on: "canvas", events: { onhover: { enable: false } } },
-        background: { color: "transparent" }
-      });
+      const hash = window.location.hash.substring(1);
+      if (['home', 'atracoes', 'ingressos', 'contato'].includes(hash)) {
+        showPage(hash);
+      } else {
+        showPage('home');
+      }
     });
 
-    document.getElementById('lang-select').addEventListener('change', (e) => {
-      setLanguage(e.target.value);
-    });
-
+    // Menu mobile
     document.querySelector('.menu-toggle').addEventListener('click', () => {
       document.querySelector('.menu').classList.toggle('active');
     });
 
     // === CARRINHO ===
     const produtos = {
-      adulto: { nome_pt: "Adulto", nome_en: "Adult", nome_es: "Adulto", preco: 89.90 },
-      criança: { nome_pt: "Criança", nome_en: "Child", nome_es: "Niño", preco: 59.90 },
-      combo: { nome_pt: "Combo Família", nome_en: "Family Combo", nome_es: "Combo Familiar", preco: 249.90 }
+      adulto: { nome: "Adulto", preco: 89.90 },
+      criança: { nome: "Criança", preco: 59.90 },
+      combo: { nome: "Combo Família", preco: 249.90 }
     };
     let carrinho = [];
 
@@ -831,17 +450,14 @@
       let total = 0;
 
       carrinho.forEach((item, index) => {
-        const nome = item[`nome_${currentLang}`] || item.nome_pt;
         const subtotal = item.quantidade * item.preco;
         total += subtotal;
         html += `
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--cor-vidro-borda);">
-            <div><strong>${nome}</strong> × ${item.quantidade}</div>
-            <div>
-              R$ ${subtotal.toFixed(2).replace('.', ',')}
-              <button onclick="removerItem(${index})" style="margin-left: 10px; background: #d32f2f; color: white; border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 0.8rem; cursor: pointer;">−</button>
-            </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+            <span><strong>${item.nome}</strong> × ${item.quantidade}</span>
+            <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
           </div>
+          <button onclick="removerItem(${index})" style="background: #f44336; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.9rem; margin-bottom: 1rem;">Remover</button>
         `;
       });
 
@@ -869,24 +485,14 @@
     });
 
     document.getElementById('checkout-btn').addEventListener('click', () => {
-      if (carrinho.length === 0) return;
-      document.getElementById('checkout-modal').style.display = 'flex';
-    });
-
-    document.getElementById('close-modal').addEventListener('click', () => {
-      document.getElementById('checkout-modal').style.display = 'none';
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio.');
+        return;
+      }
+      alert('✅ Compra registrada com sucesso!\nEntraremos em contato em breve.');
       carrinho = [];
       atualizarCarrinho();
     });
-
-    function copiarChavePIX() {
-      const chave = "pindorama@park.com.br";
-      navigator.clipboard.writeText(chave).then(() => {
-        const toast = document.getElementById('toast');
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2000);
-      });
-    }
 
     // === FORMULÁRIO ===
     const form = document.getElementById('contact-form');
@@ -902,22 +508,16 @@
         })
         .then(response => {
           if (response.ok) {
-            const msg = currentLang === 'en' ? 'Message sent successfully!' : 
-                       currentLang === 'es' ? '¡Mensaje enviado con éxito!' : 
-                       'Mensagem enviada com sucesso!';
             messageDiv.style.color = '#a5d6a7';
-            messageDiv.textContent = msg;
+            messageDiv.textContent = 'Mensagem enviada com sucesso!';
             form.reset();
           } else {
-            throw new Error('Erro no envio.');
+            throw new Error('Erro');
           }
         })
         .catch(() => {
-          const msg = currentLang === 'en' ? 'Oops! An error occurred.' : 
-                     currentLang === 'es' ? '¡Ups! Ocurrió un error.' : 
-                     'Ops! Ocorreu um erro.';
           messageDiv.style.color = '#f44336';
-          messageDiv.textContent = msg;
+          messageDiv.textContent = 'Ops! Ocorreu um erro. Tente novamente.';
         })
         .finally(() => {
           messageDiv.style.display = 'block';
