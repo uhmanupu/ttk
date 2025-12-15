@@ -128,17 +128,12 @@
       min-height: calc(100vh - 120px);
       padding: 4rem 0;
       opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
     .page.active {
       display: block;
-      animation: fadeIn 0.8s forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      opacity: 1;
     }
 
     .hero {
@@ -447,7 +442,7 @@
     <!-- Atrações -->
     <section id="atracoes" class="page">
       <div class="container">
-        <h2 data-key="attractions_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;" data-sr> Nossas Atrações </h2>
+        <h2 data-key="attractions_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Nossas Atrações</h2>
         <div class="cards">
           <div class="glass-card" data-sr>
             <h3 class="card-title" data-key="attraction1_title">Floresta Encantada</h3>
@@ -468,30 +463,30 @@
     <!-- Ingressos -->
     <section id="ingressos" class="page">
       <div class="container">
-        <h2 data-key="tickets_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;" data-sr> Compre Seus Ingressos </h2>
+        <h2 data-key="tickets_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Compre Seus Ingressos</h2>
 
         <div class="cards">
           <div class="glass-card" style="text-align: center;" data-sr>
             <h3 class="card-title" data-key="adult">Adulto</h3>
             <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 89,90</p>
             <p data-key="adult_desc">13 anos ou mais</p>
-            <button class="btn add-to-cart" data-type="adulto" data-key="add_to_cart" style="margin-top: 1rem;">Adicionar</button>
+            <button class="btn add-to-cart" data-type="adulto" data-key="add_to_cart">Adicionar</button>
           </div>
           <div class="glass-card" style="text-align: center;" data-sr>
             <h3 class="card-title" data-key="child">Criança</h3>
             <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 59,90</p>
             <p data-key="child_desc">3 a 12 anos</p>
-            <button class="btn add-to-cart" data-type="criança" data-key="add_to_cart" style="margin-top: 1rem;">Adicionar</button>
+            <button class="btn add-to-cart" data-type="criança" data-key="add_to_cart">Adicionar</button>
           </div>
           <div class="glass-card" style="text-align: center;" data-sr>
             <h3 class="card-title" data-key="family_combo">Combo Família</h3>
             <p class="price" style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 249,90</p>
             <p data-key="combo_desc">2 adultos + 2 crianças</p>
-            <button class="btn add-to-cart" data-type="combo" data-key="add_to_cart" style="margin-top: 1rem;">Adicionar</button>
+            <button class="btn add-to-cart" data-type="combo" data-key="add_to_cart">Adicionar</button>
           </div>
         </div>
 
-        <div id="cart-container" class="glass-card" data-sr>
+        <div id="cart-container" class="glass-card">
           <h3 data-key="your_cart" style="color: #a5d6a7; margin-bottom: 1.5rem; text-align: center;">Seu Carrinho</h3>
           <div id="cart-items"></div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--cor-vidro-borda);">
@@ -500,7 +495,7 @@
           </div>
         </div>
 
-        <div id="pix-section" class="glass-card" data-sr>
+        <div id="pix-section" class="glass-card">
           <h3 data-key="pay_with_pix" style="color: #a5d6a7; margin-bottom: 1rem;">Pague com PIX</h3>
           <p data-key="pix_instructions">Escaneie o QR Code ou copie a chave abaixo:</p>
           <div id="pix-qr">QR Code PIX<br>(simulado)</div>
@@ -526,20 +521,20 @@
     <!-- Contato -->
     <section id="contato" class="page">
       <div class="container">
-        <h2 data-key="contact_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;" data-sr> Fale Conosco </h2>
+        <h2 data-key="contact_title" style="text-align: center; margin-bottom: 2rem; font-family: 'Playfair Display', serif; color: #a5d6a7;">Fale Conosco</h2>
         <div class="glass-card" style="max-width: 700px; margin: 0 auto;" data-sr>
           <form id="contact-form" action="https://formspree.io/f/xgvgbljj" method="POST">
             <div class="form-group">
               <label for="name" data-key="full_name">Nome completo</label>
-              <input type="text" id="name" name="nome" class="form-control" required placeholder="Ex: Maria Silva">
+              <input type="text" id="name" name="nome" class="form-control" required>
             </div>
             <div class="form-group">
               <label for="email" data-key="email">E-mail</label>
-              <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
+              <input type="email" id="email" name="email" class="form-control" required>
             </div>
             <div class="form-group">
               <label for="message" data-key="message">Mensagem</label>
-              <textarea id="message" name="mensagem" class="form-control" required placeholder="Como podemos ajudar?"></textarea>
+              <textarea id="message" name="mensagem" class="form-control" required></textarea>
             </div>
             <button type="submit" class="btn" style="width: 100%;" data-key="send_message">Enviar Mensagem</button>
           </form>
@@ -712,34 +707,49 @@
       localStorage.setItem('lang', lang);
       document.getElementById('lang-select').value = lang;
       
-      // Atualiza todos os textos
       document.querySelectorAll('[data-key]').forEach(el => {
         const key = el.getAttribute('data-key');
         if (translations[lang][key]) {
           el.textContent = translations[lang][key];
         }
       });
-      
-      // Atualiza placeholder do formulário
-      if (lang === 'en') {
-        document.querySelector('#name').placeholder = "e.g., Maria Silva";
-        document.querySelector('#email').placeholder = "your@email.com";
-        document.querySelector('#message').placeholder = "How can we help?";
-      } else if (lang === 'es') {
-        document.querySelector('#name').placeholder = "Ej: María Silva";
-        document.querySelector('#email').placeholder = "tu@email.com";
-        document.querySelector('#message').placeholder = "¿Cómo podemos ayudarte?";
-      } else {
-        document.querySelector('#name').placeholder = "Ex: Maria Silva";
-        document.querySelector('#email').placeholder = "seu@email.com";
-        document.querySelector('#message').placeholder = "Como podemos ajudar?";
+
+      // Atualiza placeholders
+      const placeholders = {
+        pt: { name: "Ex: Maria Silva", email: "seu@email.com", message: "Como podemos ajudar?" },
+        en: { name: "e.g., Maria Silva", email: "your@email.com", message: "How can we help?" },
+        es: { name: "Ej: María Silva", email: "tu@email.com", message: "¿Cómo podemos ayudarte?" }
+      };
+      const p = placeholders[lang];
+      if (p) {
+        document.querySelector('#name').placeholder = p.name;
+        document.querySelector('#email').placeholder = p.email;
+        document.querySelector('#message').placeholder = p.message;
       }
     }
 
     // === NAVEGAÇÃO ===
+    function initScrollReveal() {
+      ScrollReveal().sync(); // limpa instâncias anteriores
+      ScrollReveal().reveal('[data-sr]', {
+        duration: 800,
+        distance: '30px',
+        easing: 'cubic-bezier(0.5, 0, 0, 1)',
+        origin: 'bottom',
+        interval: 150,
+        reset: false
+      });
+    }
+
     function showPage(pageId) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById(pageId).classList.add('active');
+      const page = document.getElementById(pageId);
+      if (page) {
+        page.classList.add('active');
+        setTimeout(() => {
+          initScrollReveal();
+        }, 300);
+      }
       history.pushState({page: pageId}, '', `#${pageId}`);
     }
 
@@ -759,15 +769,13 @@
 
     // === INICIALIZAÇÃO ===
     window.addEventListener('load', () => {
-      // Definir idioma
       setLanguage(currentLang);
       
-      // Mostrar página correta
       const hash = window.location.hash.slice(1);
       const validPages = ['home', 'atracoes', 'ingressos', 'contato'];
       const page = validPages.includes(hash) ? hash : 'home';
       showPage(page);
-      
+
       // Partículas
       tsParticles.load("tsparticles", {
         fpsLimit: 60,
@@ -790,28 +798,17 @@
         interactivity: { detect_on: "canvas", events: { onhover: { enable: false } } },
         background: { color: "transparent" }
       });
-
-      // ScrollReveal
-      ScrollReveal().reveal('[data-sr]', {
-        duration: 800,
-        distance: '30px',
-        easing: 'cubic-bezier(0.5, 0, 0, 1)',
-        origin: 'bottom',
-        interval: 150,
-        reset: false
-      });
     });
 
-    // Troca de idioma
     document.getElementById('lang-select').addEventListener('change', (e) => {
       setLanguage(e.target.value);
     });
 
-    // === RESTANTE DO CÓDIGO (carrinho, PIX, formulário) ===
     document.querySelector('.menu-toggle').addEventListener('click', () => {
       document.querySelector('.menu').classList.toggle('active');
     });
 
+    // === CARRINHO ===
     const produtos = {
       adulto: { nome_pt: "Adulto", nome_en: "Adult", nome_es: "Adulto", preco: 89.90 },
       criança: { nome_pt: "Criança", nome_en: "Child", nome_es: "Niño", preco: 59.90 },
@@ -891,6 +888,7 @@
       });
     }
 
+    // === FORMULÁRIO ===
     const form = document.getElementById('contact-form');
     const messageDiv = document.getElementById('form-message');
     if (form) {
@@ -904,20 +902,22 @@
         })
         .then(response => {
           if (response.ok) {
+            const msg = currentLang === 'en' ? 'Message sent successfully!' : 
+                       currentLang === 'es' ? '¡Mensaje enviado con éxito!' : 
+                       'Mensagem enviada com sucesso!';
             messageDiv.style.color = '#a5d6a7';
-            messageDiv.textContent = currentLang === 'en' ? 'Message sent successfully!' : 
-                                    currentLang === 'es' ? '¡Mensaje enviado con éxito!' : 
-                                    'Mensagem enviada com sucesso!';
+            messageDiv.textContent = msg;
             form.reset();
           } else {
             throw new Error('Erro no envio.');
           }
         })
         .catch(() => {
+          const msg = currentLang === 'en' ? 'Oops! An error occurred.' : 
+                     currentLang === 'es' ? '¡Ups! Ocurrió un error.' : 
+                     'Ops! Ocorreu um erro.';
           messageDiv.style.color = '#f44336';
-          messageDiv.textContent = currentLang === 'en' ? 'Oops! An error occurred. Please try again later.' : 
-                                  currentLang === 'es' ? '¡Ups! Ocurrió un error. Por favor, inténtalo más tarde.' : 
-                                  'Ops! Ocorreu um erro. Tente novamente mais tarde.';
+          messageDiv.textContent = msg;
         })
         .finally(() => {
           messageDiv.style.display = 'block';
