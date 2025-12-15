@@ -132,14 +132,14 @@
     }
 
     /* Cards */
-    .cards, .tickets {
+    .cards {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
     }
 
-    .card, .ticket {
+    .card {
       background: white;
       padding: 2rem;
       border-radius: 12px;
@@ -149,11 +149,11 @@
       transition: transform 0.3s;
     }
 
-    .card:hover, .ticket:hover {
+    .card:hover {
       transform: translateY(-5px);
     }
 
-    .card h3, .ticket h3 {
+    .card h3 {
       color: var(--cor-primaria);
       margin-bottom: 1rem;
     }
@@ -177,6 +177,8 @@
       font-size: 1.1rem;
       transition: background 0.3s, transform 0.2s;
       margin-top: 1rem;
+      border: none;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -243,7 +245,7 @@
         display: block;
       }
 
-      .card, .ticket {
+      .card {
         width: 100%;
       }
 
@@ -266,7 +268,7 @@
         <ul class="menu">
           <li><a href="#inicio">Início</a></li>
           <li><a href="#atracoes">Atrações</a></li>
-          <li><a href="#ingressos">Ingressos</a></li>
+          <li><a href="#compra">Compre Ingressos</a></li>
           <li><a href="#localizacao">Localização</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
@@ -279,7 +281,7 @@
       <div class="container">
         <h2>Bem-vindo ao Pindorama Park!</h2>
         <p>Um parque temático imersivo que celebra a cultura, fauna, flora e mitologia do Brasil pré-colonial. Diversão para toda a família!</p>
-        <a href="#ingressos" class="btn">Compre seu ingresso</a>
+        <a href="#compra" class="btn">Compre seus ingressos</a>
       </div>
     </section>
 
@@ -303,111 +305,59 @@
       </div>
     </section>
 
-   <section id="ingressos" class="section">
-  <div class="container">
-    <h2>Ingressos</h2>
+    <!-- Seção de Compra com Carrinho -->
+    <section id="compra" class="section">
+      <div class="container">
+        <h2>Compre Seus Ingressos</h2>
 
-    <!-- Cards informativos (mantidos) -->
-    <div class="tickets">
-      <div class="ticket">
-        <h3>Adulto</h3>
-        <p class="price">R$ 89,90</p>
-        <p>13 anos ou mais</p>
-      </div>
-      <div class="ticket">
-        <h3>Criança</h3>
-        <p class="price">R$ 59,90</p>
-        <p>3 a 12 anos</p>
-      </div>
-      <div class="ticket">
-        <h3>Combo Família</h3>
-        <p class="price">R$ 249,90</p>
-        <p>2 adultos + 2 crianças</p>
-      </div>
-    </div>
-
-    <!-- Nova área interativa de compra -->
-    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--sombra); max-width: 700px; margin: 2.5rem auto 1.5rem;">
-      <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--cor-primaria);">Monte seu ingresso</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem;">
-        <div style="flex: 1; min-width: 200px;">
-          <label for="adultos">Adultos (R$ 89,90)</label><br>
-          <input type="number" id="adultos" min="0" value="0" style="width: 100%; padding: 0.6rem; margin-top: 0.4rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+        <!-- Produtos -->
+        <div class="cards" style="gap: 2rem; justify-content: center;">
+          <div class="card" style="width: calc(30% - 2rem); text-align: center; position: relative;">
+            <h3>Adulto</h3>
+            <p class="price">R$ 89,90</p>
+            <p>13 anos ou mais</p>
+            <button class="btn add-to-cart" data-type="adulto" style="margin-top: 1rem;">Adicionar</button>
+          </div>
+          <div class="card" style="width: calc(30% - 2rem); text-align: center; position: relative;">
+            <h3>Criança</h3>
+            <p class="price">R$ 59,90</p>
+            <p>3 a 12 anos</p>
+            <button class="btn add-to-cart" data-type="criança" style="margin-top: 1rem;">Adicionar</button>
+          </div>
+          <div class="card" style="width: calc(30% - 2rem); text-align: center; position: relative;">
+            <h3>Combo Família</h3>
+            <p class="price">R$ 249,90</p>
+            <p>2 adultos + 2 crianças</p>
+            <button class="btn add-to-cart" data-type="combo" style="margin-top: 1rem;">Adicionar</button>
+          </div>
         </div>
-        <div style="flex: 1; min-width: 200px;">
-          <label for="criancas">Crianças (R$ 59,90)</label><br>
-          <input type="number" id="criancas" min="0" value="0" style="width: 100%; padding: 0.6rem; margin-top: 0.4rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+
+        <!-- Carrinho -->
+        <div id="cart-container" style="margin-top: 3rem; background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--sombra); display: none;">
+          <h3 style="color: var(--cor-primaria); margin-bottom: 1.5rem; text-align: center;">Seu Carrinho</h3>
+          <div id="cart-items"></div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #eee;">
+            <strong>Total: <span id="cart-total">R$ 0,00</span></strong>
+            <button id="checkout-btn" class="btn" style="background: #d32f2f;">Finalizar Compra</button>
+          </div>
+        </div>
+
+        <!-- Modal de confirmação -->
+        <div id="checkout-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center;">
+          <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 500px; width: 90%;">
+            <h3 style="color: var(--cor-primaria); text-align: center;">Compra Finalizada!</h3>
+            <p style="text-align: center; margin: 1.5rem 0;">
+              Sua compra foi registrada com sucesso!<br>
+              Em breve entraremos em contato para confirmação.
+            </p>
+            <div style="text-align: center;">
+              <button id="close-modal" class="btn" style="background: var(--cor-primaria);">Ok, Entendi</button>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div style="text-align: center; margin: 1.5rem 0; padding: 1rem; background: #f0f9f0; border-radius: 8px;">
-        <p style="font-size: 1.1rem; margin: 0;">Total: <strong id="total">R$ 0,00</strong></p>
-      </div>
-
-      <div style="text-align: center;">
-        <button id="whatsapp-btn" class="btn" style="padding: 0.9rem 2rem; font-size: 1.1rem;">
-          Comprar pelo WhatsApp
-        </button>
-        <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-          Seu pedido será enviado automaticamente para nosso atendimento.
-        </p>
-      </div>
-    </div>
-
-    <!-- Botão original (opcional mantê-lo ou remover — deixei comentado) -->
-    <!--
-    <a href="https://wa.me/5511987654321?text=Olá! Gostaria de comprar ingressos para o Pindorama Park." 
-       class="btn" target="_blank" rel="noopener">
-      Comprar pelo WhatsApp (versão rápida)
-    </a>
-    -->
-  </div>
-</section>
-
-<script>
-  // Garante que o script não conflita se já houver outro
-  if (typeof ingressosScriptCarregado === 'undefined') {
-    const adultInput = document.getElementById('adultos');
-    const childInput = document.getElementById('criancas');
-    const totalDisplay = document.getElementById('total');
-    const whatsappBtn = document.getElementById('whatsapp-btn');
-
-    const PRECO_ADULTO = 89.90;
-    const PRECO_CRIANCA = 59.90;
-    const NUMERO_WHATSAPP = '5511987654321'; // 🔁 Substitua pelo seu número real
-
-    function atualizarTotal() {
-      const adultos = parseInt(adultInput.value) || 0;
-      const criancas = parseInt(childInput.value) || 0;
-      const total = (adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA);
-      totalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
-
-    adultInput.addEventListener('input', atualizarTotal);
-    childInput.addEventListener('input', atualizarTotal);
-
-    whatsappBtn.addEventListener('click', () => {
-      const adultos = parseInt(adultInput.value) || 0;
-      const criancas = parseInt(childInput.value) || 0;
-      if (adultos === 0 && criancas === 0) {
-        alert('⚠️ Por favor, selecione pelo menos um ingresso.');
-        return;
-      }
-
-      const total = ((adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA)).toFixed(2);
-      let mensagem = `Olá! Gostaria de comprar ingressos para o Pindorama Park:\n\n`;
-      if (adultos > 0) mensagem += `- ${adultos} ingresso(s) adulto(s) — R$ ${(adultos * PRECO_ADULTO).toFixed(2)}\n`;
-      if (criancas > 0) mensagem += `- ${criancas} ingresso(s) criança(s) — R$ ${(criancas * PRECO_CRIANCA).toFixed(2)}\n`;
-      mensagem += `\nTotal: R$ ${total}\n\nAgradeço o atendimento!`;
-
-      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    });
-
-    atualizarTotal();
-    window.ingressosScriptCarregado = true;
-  }
-</script>
     <section id="localizacao" class="section">
       <div class="container">
         <h2>Localização</h2>
@@ -459,6 +409,90 @@
       link.addEventListener('click', () => {
         document.querySelector('.menu').classList.remove('active');
       });
+    });
+
+    // --- Carrinho de Compras ---
+    const produtos = {
+      adulto: { nome: "Adulto", preco: 89.90 },
+      criança: { nome: "Criança", preco: 59.90 },
+      combo: { nome: "Combo Família", preco: 249.90 }
+    };
+
+    let carrinho = [];
+
+    function atualizarCarrinho() {
+      const container = document.getElementById('cart-items');
+      const totalEl = document.getElementById('cart-total');
+      const cartSection = document.getElementById('cart-container');
+
+      if (carrinho.length === 0) {
+        cartSection.style.display = 'none';
+        return;
+      }
+
+      cartSection.style.display = 'block';
+      let html = '';
+      let total = 0;
+
+      carrinho.forEach((item, index) => {
+        const subtotal = item.quantidade * item.preco;
+        total += subtotal;
+        html += `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
+            <div>
+              <strong>${item.nome}</strong> × ${item.quantidade}
+            </div>
+            <div>
+              R$ ${subtotal.toFixed(2).replace('.', ',')}
+              <button onclick="removerItem(${index})" style="margin-left: 10px; background: #f44336; color: white; border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 0.8rem; cursor: pointer;">−</button>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      totalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    // Função global para remover (acessível pelo onclick)
+    window.removerItem = function(index) {
+      carrinho.splice(index, 1);
+      atualizarCarrinho();
+    };
+
+    // Adicionar ao carrinho
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tipo = btn.getAttribute('data-type');
+        const produto = produtos[tipo];
+
+        const itemExistente = carrinho.find(item => item.tipo === tipo);
+        if (itemExistente) {
+          itemExistente.quantidade += 1;
+        } else {
+          carrinho.push({
+            tipo: tipo,
+            nome: produto.nome,
+            preco: produto.preco,
+            quantidade: 1
+          });
+        }
+
+        atualizarCarrinho();
+      });
+    });
+
+    // Finalizar compra
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      if (carrinho.length === 0) return;
+      document.getElementById('checkout-modal').style.display = 'flex';
+    });
+
+    // Fechar modal
+    document.getElementById('close-modal').addEventListener('click', () => {
+      document.getElementById('checkout-modal').style.display = 'none';
+      carrinho = [];
+      atualizarCarrinho();
     });
   </script>
 </body>
