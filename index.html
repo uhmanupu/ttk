@@ -1,7 +1,29 @@
 <section id="ingressos" class="section">
   <div class="container">
-    <h2>Compre Seus Ingressos</h2>
-    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--sombra); max-width: 700px; margin: 0 auto;">
+    <h2>Ingressos</h2>
+
+    <!-- Cards informativos (mantidos) -->
+    <div class="tickets">
+      <div class="ticket">
+        <h3>Adulto</h3>
+        <p class="price">R$ 89,90</p>
+        <p>13 anos ou mais</p>
+      </div>
+      <div class="ticket">
+        <h3>Criança</h3>
+        <p class="price">R$ 59,90</p>
+        <p>3 a 12 anos</p>
+      </div>
+      <div class="ticket">
+        <h3>Combo Família</h3>
+        <p class="price">R$ 249,90</p>
+        <p>2 adultos + 2 crianças</p>
+      </div>
+    </div>
+
+    <!-- Nova área interativa de compra -->
+    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--sombra); max-width: 700px; margin: 2.5rem auto 1.5rem;">
+      <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--cor-primaria);">Monte seu ingresso</h3>
       <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem;">
         <div style="flex: 1; min-width: 200px;">
           <label for="adultos">Adultos (R$ 89,90)</label><br>
@@ -19,57 +41,65 @@
 
       <div style="text-align: center;">
         <button id="whatsapp-btn" class="btn" style="padding: 0.9rem 2rem; font-size: 1.1rem;">
-          Confirmar Compra via WhatsApp
+          Comprar pelo WhatsApp
         </button>
         <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
-          Seu carrinho será enviado automaticamente para nosso atendimento.
+          Seu pedido será enviado automaticamente para nosso atendimento.
         </p>
       </div>
     </div>
+
+    <!-- Botão original (opcional mantê-lo ou remover — deixei comentado) -->
+    <!--
+    <a href="https://wa.me/5511987654321?text=Olá! Gostaria de comprar ingressos para o Pindorama Park." 
+       class="btn" target="_blank" rel="noopener">
+      Comprar pelo WhatsApp (versão rápida)
+    </a>
+    -->
   </div>
 </section>
 
 <script>
-  // Atualiza o total sempre que os valores mudam
-  const adultInput = document.getElementById('adultos');
-  const childInput = document.getElementById('criancas');
-  const totalDisplay = document.getElementById('total');
-  const whatsappBtn = document.getElementById('whatsapp-btn');
+  // Garante que o script não conflita se já houver outro
+  if (typeof ingressosScriptCarregado === 'undefined') {
+    const adultInput = document.getElementById('adultos');
+    const childInput = document.getElementById('criancas');
+    const totalDisplay = document.getElementById('total');
+    const whatsappBtn = document.getElementById('whatsapp-btn');
 
-  const PRECO_ADULTO = 89.90;
-  const PRECO_CRIANCA = 59.90;
-  const NUMERO_WHATSAPP = '5511987654321'; // 🔁 Substitua pelo seu número (com DDD e país)
+    const PRECO_ADULTO = 89.90;
+    const PRECO_CRIANCA = 59.90;
+    const NUMERO_WHATSAPP = '5511987654321'; // 🔁 Substitua pelo seu número real
 
-  function atualizarTotal() {
-    const adultos = parseInt(adultInput.value) || 0;
-    const criancas = parseInt(childInput.value) || 0;
-    const total = (adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA);
-    totalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-  }
-
-  adultInput.addEventListener('input', atualizarTotal);
-  childInput.addEventListener('input', atualizarTotal);
-
-  // Gerar link do WhatsApp com o resumo da compra
-  whatsappBtn.addEventListener('click', () => {
-    const adultos = parseInt(adultInput.value) || 0;
-    const criancas = parseInt(childInput.value) || 0;
-    if (adultos === 0 && criancas === 0) {
-      alert('Por favor, selecione pelo menos um ingresso.');
-      return;
+    function atualizarTotal() {
+      const adultos = parseInt(adultInput.value) || 0;
+      const criancas = parseInt(childInput.value) || 0;
+      const total = (adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA);
+      totalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
     }
 
-    const total = ((adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA)).toFixed(2);
-    let mensagem = `Olá! Gostaria de comprar ingressos para o Pindorama Park:\n\n`;
-    if (adultos > 0) mensagem += `- ${adultos} ingresso(s) adulto(s) - R$ ${(adultos * PRECO_ADULTO).toFixed(2)}\n`;
-    if (criancas > 0) mensagem += `- ${criancas} ingresso(s) criança(s) - R$ ${(criancas * PRECO_CRIANCA).toFixed(2)}\n`;
-    mensagem += `\nTotal: R$ ${total}\n\nAgradeço o atendimento!`;
+    adultInput.addEventListener('input', atualizarTotal);
+    childInput.addEventListener('input', atualizarTotal);
 
-    // Codifica a mensagem para URL
-    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
-    window.open(url, '_blank');
-  });
+    whatsappBtn.addEventListener('click', () => {
+      const adultos = parseInt(adultInput.value) || 0;
+      const criancas = parseInt(childInput.value) || 0;
+      if (adultos === 0 && criancas === 0) {
+        alert('⚠️ Por favor, selecione pelo menos um ingresso.');
+        return;
+      }
 
-  // Inicializa o total
-  atualizarTotal();
+      const total = ((adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA)).toFixed(2);
+      let mensagem = `Olá! Gostaria de comprar ingressos para o Pindorama Park:\n\n`;
+      if (adultos > 0) mensagem += `- ${adultos} ingresso(s) adulto(s) — R$ ${(adultos * PRECO_ADULTO).toFixed(2)}\n`;
+      if (criancas > 0) mensagem += `- ${criancas} ingresso(s) criança(s) — R$ ${(criancas * PRECO_CRIANCA).toFixed(2)}\n`;
+      mensagem += `\nTotal: R$ ${total}\n\nAgradeço o atendimento!`;
+
+      const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    });
+
+    atualizarTotal();
+    window.ingressosScriptCarregado = true;
+  }
 </script>
