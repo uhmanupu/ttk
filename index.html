@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Pindorama Park – Parque temático imersivo que celebra a cultura, natureza e mitologia do Brasil ancestral." />
-  <title>Pindorama Park</title>
+  <meta name="description" content="Pindorama Park – Uma jornada mágica pelas raízes do Brasil ancestral. Planeje sua visita hoje." />
+  <title>Pindorama Park | Uma Jornada Ancestral</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Fontes inspiradas na Disney: Playfair para títulos, Inter para corpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --cor-primaria: #2e7d32;
       --cor-primaria-clara: #4caf50;
+      --cor-ouro: #d4af37;
       --cor-escura: #0b1a0f;
-      --cor-vidro: rgba(18, 32, 20, 0.35);
-      --cor-vidro-borda: rgba(76, 175, 80, 0.25);
-      --cor-texto: #f0f8f0;
-      --cor-texto-secundaria: #c8e6c9;
-      --sombra-suave: 0 8px 32px rgba(0, 0, 0, 0.3);
-      --degrade-fundo: linear-gradient(135deg, #0a1f0d 0%, #132d16 50%, #0b1a0f 100%);
+      --cor-vidro: rgba(18, 32, 20, 0.5);
+      --cor-destaque: #a5d6a7;
+      --sombra-profunda: 0 12px 40px rgba(0, 0, 0, 0.5);
+      --degrade-fundo: linear-gradient(135deg, #0a1f0d 0%, #0d2512 100%);
     }
 
     * {
@@ -30,7 +30,7 @@
     body {
       font-family: 'Inter', sans-serif;
       background: var(--degrade-fundo);
-      color: var(--cor-texto);
+      color: #f0f8f0;
       line-height: 1.7;
       overflow-x: hidden;
     }
@@ -42,16 +42,17 @@
       padding: 0 1rem;
     }
 
-    /* Header */
+    /* Header estilo Disney: fixo, translúcido, com logo grande */
     header {
-      background: rgba(10, 25, 13, 0.6);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--cor-vidro-borda);
-      position: sticky;
+      background: rgba(10, 25, 13, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      position: fixed;
       top: 0;
+      width: 100%;
       z-index: 1000;
       padding: 1rem 0;
+      border-bottom: 1px solid rgba(76, 175, 80, 0.3);
     }
 
     header .container {
@@ -62,26 +63,33 @@
 
     header h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      background: linear-gradient(to right, #a5d6a7, #4caf50);
+      font-size: 2.4rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #ffffff, var(--cor-ouro));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
     .menu {
       display: flex;
       list-style: none;
-      gap: 1.2rem;
+      gap: 1.5rem;
     }
 
     .menu a {
-      color: var(--cor-texto);
+      color: #e0f0e0;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
+      font-size: 1.05rem;
       padding: 0.4rem 0;
       position: relative;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover {
+      color: white;
     }
 
     .menu a::after {
@@ -91,7 +99,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: #a5d6a7;
+      background: var(--cor-ouro);
       transition: width 0.3s ease;
     }
 
@@ -103,226 +111,154 @@
       display: none;
       background: none;
       border: none;
-      color: var(--cor-texto);
+      color: white;
       font-size: 1.8rem;
       cursor: pointer;
     }
 
-    /* Páginas */
-    main {
-      min-height: calc(100vh - 200px);
-    }
-
-    .page {
-      display: none;
-      padding: 4rem 0;
-    }
-
-    .page.active {
-      display: block;
-      animation: fadeInUp 0.8s ease;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Hero */
+    /* Hero estilo Disney: fullscreen, texto centralizado, CTA grande */
     .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 7rem 1rem 5rem;
-      background: linear-gradient(rgba(10, 25, 13, 0.75), rgba(10, 25, 13, 0.9)), url('https://source.unsplash.com/1600x900/?brazilian-jungle,amazon-rainforest') center/cover no-repeat;
+      background: linear-gradient(rgba(10, 25, 13, 0.6), rgba(10, 25, 13, 0.8)), url('https://source.unsplash.com/1920x1080/?brazilian-jungle,amazon-rainforest') center/cover no-repeat;
       margin-bottom: 3rem;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(76,175,80,0.15) 0%, transparent 70%);
-      animation: float 25s infinite linear;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
     .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 900px;
+      padding: 0 1.5rem;
     }
 
     .hero h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 3.4rem;
+      font-size: 4.2rem;
+      font-weight: 800;
       margin-bottom: 1.2rem;
-      background: linear-gradient(to right, #e8f5e9, #a5d6a7);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.4rem;
       margin-bottom: 2rem;
-      color: var(--cor-texto-secundaria);
+      color: #d0e8d0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* Cards */
-    .glass-card {
-      background: var(--cor-vidro);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--cor-vidro-borda);
-      border-radius: 20px;
-      padding: 2.2rem;
-      box-shadow: var(--sombra-suave);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: slideIn 0.6s forwards;
-    }
-
-    .glass-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .card-title {
-      font-size: 1.6rem;
-      margin-bottom: 1.2rem;
-      color: #a5d6a7;
-      font-weight: 700;
-    }
-
-    /* Botão */
     .btn {
       display: inline-block;
-      background: linear-gradient(120deg, var(--cor-primaria), var(--cor-primaria-clara));
+      background: linear-gradient(120deg, var(--cor-primaria), #1b5e20);
       color: white;
-      padding: 0.95rem 2.2rem;
+      padding: 1.1rem 2.8rem;
       text-decoration: none;
       border-radius: 50px;
       font-weight: 600;
-      font-size: 1.05rem;
-      transition: all 0.35s ease;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+      font-size: 1.2rem;
+      transition: all 0.4s ease;
+      border: 2px solid var(--cor-primaria-clara);
+      box-shadow: var(--sombra-profunda);
+      letter-spacing: 0.5px;
     }
 
     .btn:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 10px 25px rgba(46, 125, 50, 0.6);
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 15px 50px rgba(46, 125, 50, 0.7);
+      background: linear-gradient(120deg, var(--cor-primaria-clara), #2e7d32);
     }
 
-    /* Formulário */
-    .form-group {
-      margin-bottom: 1.4rem;
+    /* Seções estilo Disney: fundo branco translúcido, bordas arredondadas */
+    .section {
+      padding: 5rem 0;
     }
 
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 0.85rem;
-      border-radius: 10px;
-      border: 1px solid var(--cor-vidro-borda);
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--cor-texto);
-      font-family: 'Inter', sans-serif;
-    }
-
-    .form-control::placeholder {
-      color: var(--cor-texto-secundaria);
-    }
-
-    textarea.form-control {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    /* Carrinho */
-    #cart-container {
-      margin-top: 2.5rem;
-      display: none;
-    }
-
-    /* Novas seções */
     .section-title {
-      text-align: center;
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      color: #a5d6a7;
-      margin-bottom: 3rem;
+      font-size: 2.8rem;
+      text-align: center;
+      color: white;
+      margin-bottom: 3.5rem;
       position: relative;
     }
 
     .section-title::after {
       content: '';
       display: block;
-      width: 60px;
-      height: 3px;
-      background: #4caf50;
-      margin: 0.8rem auto;
-      border-radius: 3px;
+      width: 80px;
+      height: 4px;
+      background: var(--cor-ouro);
+      margin: 1rem auto;
+      border-radius: 2px;
     }
 
-    /* Trabalhe Conosco */
-    .job-list {
+    .glass-panel {
+      background: var(--cor-vidro);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(165, 214, 167, 0.3);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Cards com hover Disney-like */
+    .feature-card {
+      background: rgba(20, 40, 25, 0.6);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(76, 175, 80, 0.2);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(165, 214, 167, 0.5);
+    }
+
+    .feature-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--cor-destaque);
+      margin-bottom: 1rem;
+    }
+
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.8rem;
-      margin-top: 1.5rem;
+      gap: 2rem;
     }
 
-    .job-card {
-      background: rgba(30, 50, 35, 0.4);
-      padding: 1.6rem;
-      border-radius: 16px;
-      border-left: 4px solid #4caf50;
-    }
-
-    .job-card h4 {
-      color: #a5d6a7;
-      margin-bottom: 0.6rem;
-    }
-
-    /* Rodapé */
-    footer {
-      background: rgba(5, 15, 8, 0.7);
-      backdrop-filter: blur(10px);
-      padding: 2.5rem 0 2rem;
+    /* Ofertas especiais */
+    .offer {
       text-align: center;
-      margin-top: 5rem;
-      border-top: 1px solid var(--cor-vidro-borda);
+      padding: 2.5rem;
+      background: rgba(30, 60, 35, 0.5);
+      border-radius: 20px;
+      margin: 1.5rem 0;
+    }
+
+    .offer .price {
+      font-size: 2.2rem;
+      color: var(--cor-ouro);
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+
+    /* Rodapé estilo Disney */
+    footer {
+      background: rgba(5, 12, 8, 0.95);
+      padding: 3rem 0 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(76, 175, 80, 0.2);
     }
 
     /* Mobile */
@@ -337,7 +273,7 @@
         padding: 1rem 0;
         display: none;
         backdrop-filter: blur(10px);
-        border-top: 1px solid var(--cor-vidro-borda);
+        border-top: 1px solid rgba(76, 175, 80, 0.3);
       }
 
       .menu.active {
@@ -346,8 +282,9 @@
 
       .menu a {
         display: block;
-        padding: 1rem 2rem;
+        padding: 1.2rem 2rem;
         text-align: center;
+        font-size: 1.1rem;
       }
 
       .menu a::after {
@@ -359,11 +296,15 @@
       }
 
       .hero h2 {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
       }
 
       .section-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
     }
   </style>
@@ -372,190 +313,128 @@
 
   <header>
     <div class="container">
-      <h1>Pindorama Park</h1>
+      <h1>PINDORAMA PARK</h1>
       <nav>
         <button class="menu-toggle" aria-label="Alternar menu">&#9776;</button>
         <ul class="menu">
-          <li><a href="#home" class="nav-link">Início</a></li>
-          <li><a href="#atracoes" class="nav-link">Atrações</a></li>
-          <li><a href="#missao" class="nav-link">Nossa Missão</a></li>
-          <li><a href="#conheca" class="nav-link">Conheça-nos</a></li>
-          <li><a href="#trabalhe" class="nav-link">Trabalhe Conosco</a></li>
-          <li><a href="#ingressos" class="nav-link">Ingressos</a></li>
-          <li><a href="#contato" class="nav-link">Contato</a></li>
+          <li><a href="#home">Início</a></li>
+          <li><a href="#experiencias">Experiências</a></li>
+          <li><a href="#ingressos">Ingressos</a></li>
+          <li><a href="#planeje">Planeje Sua Visita</a></li>
+          <li><a href="#missao">Nossa Missão</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Home -->
-    <section id="home" class="page active">
-      <div class="hero">
-        <div class="hero-content">
-          <h2>Bem-vindo ao Pindorama Park</h2>
-          <p>Um reino místico onde a natureza, mitologia e diversão se fundem em uma jornada ancestral brasileira.</p>
-          <a href="#ingressos" class="btn nav-link">Compre seus ingressos</a>
-        </div>
+    <!-- Hero estilo Disney -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h2>Descubra o Brasil Ancestral</h2>
+        <p>Uma jornada mágica pelas lendas, florestas e sabedoria dos povos originários do Brasil.</p>
+        <a href="#ingressos" class="btn">Compre Ingressos</a>
       </div>
+    </section>
+
+    <!-- Experiências Únicas (inspirado em "Attractions") -->
+    <section id="experiencias" class="section">
       <div class="container">
-        <div class="glass-card">
-          <h3 class="card-title">Por que visitar?</h3>
-          <p>No Pindorama Park, cada passo é uma imersão na riqueza cultural e natural do Brasil. Inspirado nas lendas indígenas, na biodiversidade amazônica e nos valores de sustentabilidade, oferecemos experiências únicas para famílias, escolas e amantes da cultura ancestral.</p>
+        <h2 class="section-title">Experiências Únicas</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>Floresta Encantada</h3>
+            <p>Uma trilha imersiva com sons da mata, luzes suaves e aparições de Curupira e Boitatá. Uma homenagem viva à mitologia brasileira.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Rio das Onças</h3>
+            <p>Montanha-russa aquática com cenário amazônico, quedas radicais e efeitos especiais que transportam você para o coração da floresta.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Aldeia Tupinambá</h3>
+            <p>Participe de oficinas reais com artesãos indígenas: pintura corporal, cerâmica, danças e histórias contadas ao redor da fogueira.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Atrações -->
-    <section id="atracoes" class="page">
+    <!-- Ingressos e Ofertas (inspirado em "Tickets & Offers") -->
+    <section id="ingressos" class="section">
       <div class="container">
-        <h2 class="section-title">Nossas Atrações</h2>
-        <div class="glass-card">
-          <h3 class="card-title">Floresta Encantada</h3>
-          <p>Uma trilha sensorial de 500 metros que transporta você para o coração da mata atlântica. Sons de animais, iluminação suave, névoa e aparições holográficas de Curupira, Boitatá, Iara e outros seres da mitologia brasileira criam uma experiência mágica e educativa. Ideal para todas as idades.</p>
-        </div>
-        <div class="glass-card">
-          <h3 class="card-title">Rio das Onças</h3>
-          <p>Uma montanha-russa aquática com 15 metros de queda, cenários imersivos da Amazônia e efeitos especiais que simulam a jornada de um explorador pelo rio Negro. Prepare-se para emoção e aventura!</p>
-        </div>
-        <div class="glass-card">
-          <h3 class="card-title">Aldeia Tupinambá</h3>
-          <p>Um espaço cultural vivo onde artesãos indígenas ensinam pintura corporal com urucum, confecção de cerâmica, danças tradicionais e contação de histórias. Uma oportunidade rara de aprender diretamente com guardiões da sabedoria ancestral.</p>
+        <h2 class="section-title">Ingressos e Ofertas</h2>
+        <div class="glass-panel">
+          <div class="offer">
+            <h3>Ingresso Padrão</h3>
+            <div class="price">R$ 89,90</div>
+            <p>Adulto (13+ anos) | Criança (3-12): R$ 59,90</p>
+            <a href="#compra" class="btn" style="padding: 0.8rem 2rem; font-size: 1.05rem;">Comprar Agora</a>
+          </div>
+          <div class="offer" style="background: rgba(40, 80, 50, 0.4); border: 1px solid var(--cor-ouro);">
+            <h3 style="color: var(--cor-ouro);">⭐ Oferta Família</h3>
+            <div class="price">R$ 249,90</div>
+            <p>Economize 15%! Válido para 2 adultos + 2 crianças.</p>
+            <a href="#compra" class="btn" style="background: linear-gradient(120deg, var(--cor-ouro), #b8860b); border-color: var(--cor-ouro); padding: 0.8rem 2rem; font-size: 1.05rem;">Garantir Oferta</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Nossa Missão -->
-    <section id="missao" class="page">
+    <!-- Planeje Sua Visita (inspirado em "Plan Your Visit") -->
+    <section id="planeje" class="section">
+      <div class="container">
+        <h2 class="section-title">Planeje Sua Visita</h2>
+        <div class="glass-panel">
+          <h3 style="text-align: center; color: var(--cor-destaque); margin-bottom: 1.5rem;">Tudo que você precisa saber</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center;">
+            <div>
+              <h4>Horários</h4>
+              <p>Quarta a Domingo<br>9h às 18h</p>
+            </div>
+            <div>
+              <h4>Localização</h4>
+              <p>Rodovia SP-350, km 128<br>Pindorama, SP</p>
+            </div>
+            <div>
+              <h4>O que levar</h4>
+              <p>Roupas leves, repelente, água e muita curiosidade!</p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 2rem;">
+            <a href="#contato" class="btn" style="padding: 0.8rem 2.2rem;">Fale com nossa equipe</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nossa Missão (inspirado em "Our Story") -->
+    <section id="missao" class="section">
       <div class="container">
         <h2 class="section-title">Nossa Missão</h2>
-        <div class="glass-card">
-          <p>Preservar, celebrar e difundir a riqueza cultural, espiritual e ambiental do Brasil pré-colonial, oferecendo experiências educativas, sustentáveis e emocionantes que conectem as novas gerações às suas raízes ancestrais.</p>
-          <p style="margin-top: 1.2rem;"><strong>Valores:</strong> Respeito à natureza, valorização das culturas indígenas, inovação sustentável, inclusão e educação lúdica.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Conheça-nos -->
-    <section id="conheca" class="page">
-      <div class="container">
-        <h2 class="section-title">Conheça-nos</h2>
-        <div class="glass-card">
-          <p>O Pindorama Park foi fundado em 2023 por um grupo de antropólogos, ambientalistas e designers de experiência, unidos pela paixão pelo Brasil profundo. Localizado em uma área de preservação ambiental em São Paulo, o parque ocupa 12 hectares de mata nativa restaurada.</p>
-          <p style="margin-top: 1.2rem;">Contamos com parcerias diretas com comunidades indígenas Tupinambá, Guarani e Yanomami, garantindo que toda representação cultural seja feita com autenticidade, respeito e repartição justa de benefícios.</p>
-          <p style="margin-top: 1.2rem;"><strong>Números que nos orgulham:</strong><br>
-            🌱 100% de energia solar<br>
-            💧 Captação e reúso de água da chuva<br>
-            📚 +15 mil crianças atendidas em programas educacionais por ano
+        <div class="glass-panel">
+          <p style="font-size: 1.15rem; line-height: 1.8;">
+            No Pindorama Park, acreditamos que a diversão pode ser uma ponte para o respeito, o aprendizado e a preservação. 
+            Inspirados pela riqueza cultural e ambiental do Brasil pré-colonial, criamos um espaço onde lendas ganham vida, 
+            a natureza é celebrada e as futuras gerações se conectam com suas raízes.
+          </p>
+          <p style="margin-top: 1.5rem; font-style: italic; color: var(--cor-destaque);">
+            "Honramos o passado para inspirar o futuro."
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Trabalhe Conosco -->
-    <section id="trabalhe" class="page">
-      <div class="container">
-        <h2 class="section-title">Trabalhe Conosco</h2>
-        <div class="glass-card">
-          <p>Quer fazer parte de uma equipe que transforma diversão em conexão cultural? Estamos sempre em busca de pessoas apaixonadas por educação, natureza e inovação.</p>
-          <p style="margin-top: 1.2rem; font-weight: 600;">Benefícios:</p>
-          <ul style="text-align: left; padding-left: 1.5rem; margin: 0.8rem 0;">
-            <li>Plano de saúde e odontológico</li>
-            <li>Vale-refeição e vale-transporte</li>
-            <li>Entrada gratuita para familiares</li>
-            <li>Programas de capacitação cultural e ambiental</li>
-            <li>Ambiente de trabalho inclusivo e inspirador</li>
-          </ul>
-        </div>
-
-        <h3 style="text-align: center; margin: 2.5rem 0 1.5rem; color: #a5d6a7;">Vagas em Aberto</h3>
-        <div class="job-list">
-          <div class="job-card">
-            <h4>Monitor Cultural</h4>
-            <p>Guia visitantes pela Aldeia Tupinambá, conduz oficinas e contação de histórias. Formação em pedagogia, teatro ou antropologia é um diferencial.</p>
-          </div>
-          <div class="job-card">
-            <h4>Técnico em Manutenção</h4>
-            <p>Responsável pela segurança e funcionamento das atrações. Experiência com equipamentos de lazer e segurança é essencial.</p>
-          </div>
-          <div class="job-card">
-            <h4>Designer de Experiência</h4>
-            <p>Desenvolve novas atrações imersivas com foco em cultura e sustentabilidade. Portfólio criativo e conhecimento em realidade aumentada são valorizados.</p>
-          </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 2.5rem;">
-          <a href="#contato" class="btn nav-link">Envie seu currículo</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ingressos -->
-    <section id="ingressos" class="page">
-      <div class="container">
-        <h2 class="section-title">Compre Seus Ingressos</h2>
-        <div class="glass-card" style="text-align: center;">
-          <h3 class="card-title">Adulto</h3>
-          <p style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 89,90</p>
-          <p>13 anos ou mais</p>
-          <button class="btn add-to-cart" data-type="adulto" style="margin-top: 1rem;">Adicionar ao Carrinho</button>
-        </div>
-        <div class="glass-card" style="text-align: center;">
-          <h3 class="card-title">Criança</h3>
-          <p style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 59,90</p>
-          <p>3 a 12 anos</p>
-          <button class="btn add-to-cart" data-type="criança" style="margin-top: 1rem;">Adicionar ao Carrinho</button>
-        </div>
-        <div class="glass-card" style="text-align: center;">
-          <h3 class="card-title">Combo Família</h3>
-          <p style="font-size: 1.8rem; color: #a5d6a7; margin: 0.5rem 0;">R$ 249,90</p>
-          <p>2 adultos + 2 crianças</p>
-          <button class="btn add-to-cart" data-type="combo" style="margin-top: 1rem;">Adicionar ao Carrinho</button>
-        </div>
-
-        <div id="cart-container" class="glass-card">
-          <h3 class="card-title">Seu Carrinho</h3>
-          <div id="cart-items"></div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--cor-vidro-borda);">
-            <strong>Total: <span id="cart-total">R$ 0,00</span></strong>
-            <button id="checkout-btn" class="btn" style="background: linear-gradient(120deg, #d32f2f, #f44336);">Finalizar Compra</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Contato -->
-    <section id="contato" class="page">
+    <section id="contato" class="section">
       <div class="container">
         <h2 class="section-title">Fale Conosco</h2>
-        <div class="glass-card">
-          <form id="contact-form" action="https://formspree.io/f/xgvgbljj" method="POST">
-            <div class="form-group">
-              <label for="name">Nome completo</label>
-              <input type="text" id="name" name="nome" class="form-control" required placeholder="Ex: Ana Oliveira">
-            </div>
-            <div class="form-group">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" name="email" class="form-control" required placeholder="seu@email.com">
-            </div>
-            <div class="form-group">
-              <label for="subject">Assunto</label>
-              <select id="subject" name="assunto" class="form-control" required>
-                <option value="">Selecione</option>
-                <option value="duvida">Dúvida sobre ingressos</option>
-                <option value="grupo">Agendamento para grupos</option>
-                <option value="trabalhe">Trabalhe conosco</option>
-                <option value="parceria">Parceria cultural</option>
-                <option value="outro">Outro</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Mensagem</label>
-              <textarea id="message" name="mensagem" class="form-control" required placeholder="Conte-nos como podemos ajudar"></textarea>
-            </div>
-            <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
-          </form>
-          <div id="form-message" style="margin-top: 1rem; text-align: center; display: none; color: #a5d6a7;"></div>
+        <div class="glass-panel">
+          <p style="text-align: center; margin-bottom: 1.5rem;">Tem dúvidas? Quer agendar uma visita escolar ou corporativa?</p>
+          <div style="text-align: center;">
+            <p style="font-size: 1.2rem;">📧 contato@pindoromapark.com.br</p>
+            <p style="font-size: 1.2rem;">📞 (11) 98765-4321</p>
+            <a href="https://wa.me/5511987654321" class="btn" style="margin-top: 1.5rem; display: inline-block;">Enviar WhatsApp</a>
+          </div>
         </div>
       </div>
     </section>
@@ -564,54 +443,27 @@
   <footer>
     <div class="container">
       <p>&copy; 2025 Pindorama Park. Todos os direitos reservados.</p>
-      <p>Inspirado na sabedoria ancestral e na riqueza do Brasil.</p>
-      <p style="margin-top: 0.8rem; font-size: 0.95rem; color: var(--cor-texto-secundaria);">
-        Rodovia SP-350, km 128 – Parque Ecológico Pindorama, SP | (11) 98765-4321
-      </p>
+      <p style="margin-top: 0.5rem; color: #a5d6a7;">Inspirado na sabedoria dos povos originários do Brasil.</p>
     </div>
   </footer>
 
   <script>
-    // Animação suave ao rolar (sem bibliotecas)
-    function animateOnScroll() {
-      const cards = document.querySelectorAll('.glass-card');
-      cards.forEach(card => {
-        const cardTop = card.getBoundingClientRect().top;
-        const triggerBottom = window.innerHeight - 100;
-        if (cardTop < triggerBottom) {
-          card.classList.add('visible');
-        }
-      });
-    }
-
-    window.addEventListener('scroll', animateOnScroll);
-    window.addEventListener('load', () => {
-      animateOnScroll(); // Anima ao carregar
-    });
-
-    // Navegação
-    function showPage(id) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      const page = document.getElementById(id);
-      if (page) page.classList.add('active');
-    }
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = link.getAttribute('href').substring(1);
-        showPage(target);
-        document.querySelector('.menu').classList.remove('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
-
-    window.addEventListener('load', () => {
-      const hash = window.location.hash.substring(1);
-      if (['home','atracoes','missao','conheca','trabalhe','ingressos','contato'].includes(hash)) {
-        showPage(hash);
-      } else {
-        showPage('home');
+    // Navegação suave (estilo Disney)
+    document.querySelectorAll('.menu a, .btn').forEach(link => {
+      if (link.hasAttribute('href') && link.getAttribute('href').startsWith('#')) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            // Fecha menu mobile
+            document.querySelector('.menu').classList.remove('active');
+          }
+        });
       }
     });
 
@@ -620,104 +472,14 @@
       document.querySelector('.menu').classList.toggle('active');
     });
 
-    // Carrinho
-    const produtos = {
-      adulto: { nome: "Adulto", preco: 89.90 },
-      criança: { nome: "Criança", preco: 59.90 },
-      combo: { nome: "Combo Família", preco: 249.90 }
-    };
-    let carrinho = [];
-
-    function atualizarCarrinho() {
-      const container = document.getElementById('cart-items');
-      const totalEl = document.getElementById('cart-total');
-      const cartSection = document.getElementById('cart-container');
-
-      if (carrinho.length === 0) {
-        cartSection.style.display = 'none';
-        return;
+    // Animação sutil ao rolar (opcional)
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        const scrollY = window.scrollY;
+        hero.style.backgroundPositionY = -scrollY * 0.5 + 'px';
       }
-
-      cartSection.style.display = 'block';
-      let html = '';
-      let total = 0;
-
-      carrinho.forEach((item, index) => {
-        const subtotal = item.quantidade * item.preco;
-        total += subtotal;
-        html += `
-          <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-            <span><strong>${item.nome}</strong> × ${item.quantidade}</span>
-            <span>R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
-          </div>
-          <button onclick="removerItem(${index})" style="background: #f44336; color: white; border: none; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.9rem; margin-bottom: 1rem;">Remover</button>
-        `;
-      });
-
-      container.innerHTML = html;
-      totalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
-
-    window.removerItem = function(index) {
-      carrinho.splice(index, 1);
-      atualizarCarrinho();
-    };
-
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tipo = btn.getAttribute('data-type');
-        const produto = produtos[tipo];
-        const existente = carrinho.find(i => i.tipo === tipo);
-        if (existente) {
-          existente.quantidade++;
-        } else {
-          carrinho.push({ ...produto, tipo, quantidade: 1 });
-        }
-        atualizarCarrinho();
-      });
     });
-
-    document.getElementById('checkout-btn').addEventListener('click', () => {
-      if (carrinho.length === 0) {
-        alert('⚠️ Seu carrinho está vazio.');
-        return;
-      }
-      alert('✅ Compra registrada com sucesso!\nEntraremos em contato para confirmação.');
-      carrinho = [];
-      atualizarCarrinho();
-    });
-
-    // Formulário
-    const form = document.getElementById('contact-form');
-    const messageDiv = document.getElementById('form-message');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-          if (response.ok) {
-            messageDiv.style.color = '#a5d6a7';
-            messageDiv.textContent = '✅ Mensagem enviada com sucesso!';
-            form.reset();
-          } else {
-            throw new Error('Erro');
-          }
-        })
-        .catch(() => {
-          messageDiv.style.color = '#f44336';
-          messageDiv.textContent = '❌ Ocorreu um erro. Tente novamente.';
-        })
-        .finally(() => {
-          messageDiv.style.display = 'block';
-          setTimeout(() => messageDiv.style.display = 'none', 5000);
-        });
-      });
-    }
   </script>
 </body>
 </html>
