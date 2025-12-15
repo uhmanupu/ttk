@@ -1,389 +1,75 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Pindorama Park – Parque temático inspirado na cultura e natureza brasileiras. Atrações, ingressos, localização e contato." />
-  <title>Pindorama Park – Diversão com Raízes Brasileiras</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --cor-primaria: #2e7d32;
-      --cor-secundaria: #fff;
-      --cor-texto: #333;
-      --cor-fundo: #f9f9f9;
-      --sombra: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: var(--cor-texto);
-      background-color: var(--cor-fundo);
-      line-height: 1.6;
-      scroll-behavior: smooth;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* Cabeçalho */
-    header {
-      background-color: var(--cor-primaria);
-      color: white;
-      padding: 1rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: var(--sombra);
-    }
-
-    header .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-
-    .menu {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-    }
-
-    .menu a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.4rem 0;
-      position: relative;
-    }
-
-    .menu a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: white;
-      transition: width 0.3s;
-    }
-
-    .menu a:hover::after {
-      width: 100%;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.8rem;
-      cursor: pointer;
-    }
-
-    /* Hero */
-    .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                  url('https://source.unsplash.com/1600x900/?brazilian-forest,theme-park') center/cover no-repeat;
-      color: white;
-      text-align: center;
-      padding: 10rem 1rem;
-    }
-
-    .hero h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-    }
-
-    /* Seções */
-    .section {
-      padding: 5rem 0;
-    }
-
-    .section h2 {
-      text-align: center;
-      margin-bottom: 2.5rem;
-      color: var(--cor-primaria);
-      font-size: 2.2rem;
-      font-weight: 700;
-    }
-
-    /* Cards */
-    .cards, .tickets {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-
-    .card, .ticket {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--sombra);
-      width: calc(33% - 2rem);
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .card:hover, .ticket:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h3, .ticket h3 {
-      color: var(--cor-primaria);
-      margin-bottom: 1rem;
-    }
-
-    .price {
-      font-size: 2rem;
-      color: var(--cor-primaria);
-      font-weight: 700;
-      margin: 0.75rem 0;
-    }
-
-    /* Botão */
-    .btn {
-      display: inline-block;
-      background: var(--cor-primaria);
-      color: white;
-      padding: 0.9rem 2rem;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: background 0.3s, transform 0.2s;
-      margin-top: 1rem;
-    }
-
-    .btn:hover {
-      background: #1b5e20;
-      transform: scale(1.05);
-    }
-
-    /* Localização */
-    .map-container {
-      margin-top: 1.5rem;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--sombra);
-    }
-
-    /* Contato */
-    .contact-info {
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    .contact-info p {
-      margin: 0.6rem 0;
-    }
-
-    /* Rodapé */
-    footer {
-      background: #222;
-      color: #ddd;
-      text-align: center;
-      padding: 1.8rem 0;
-      font-size: 1rem;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-      .menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--cor-primaria);
-        flex-direction: column;
-        padding: 1rem 0;
-        display: none;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      }
-
-      .menu.active {
-        display: flex;
-      }
-
-      .menu a {
-        display: block;
-        padding: 1rem 2rem;
-        text-align: center;
-      }
-
-      .menu a::after {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .card, .ticket {
-        width: 100%;
-      }
-
-      .hero h2 {
-        font-size: 2.2rem;
-      }
-
-      .hero {
-        padding: 6rem 1rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <h1>Pindorama Park</h1>
-      <nav>
-        <button class="menu-toggle" aria-label="Alternar menu">&#9776;</button>
-        <ul class="menu">
-          <li><a href="#inicio">Início</a></li>
-          <li><a href="#atracoes">Atrações</a></li>
-          <li><a href="#ingressos">Ingressos</a></li>
-          <li><a href="#localizacao">Localização</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section id="inicio" class="hero">
-      <div class="container">
-        <h2>Bem-vindo ao Pindorama Park!</h2>
-        <p>Um parque temático imersivo que celebra a cultura, fauna, flora e mitologia do Brasil pré-colonial. Diversão para toda a família!</p>
-        <a href="#ingressos" class="btn">Compre seu ingresso</a>
-      </div>
-    </section>
-
-    <section id="atracoes" class="section">
-      <div class="container">
-        <h2>Nossas Atrações</h2>
-        <div class="cards">
-          <div class="card">
-            <h3>Floresta Encantada</h3>
-            <p>Trilha sensorial com sons da mata, luzes e aparições de Curupira, Boitatá e outras lendas.</p>
-          </div>
-          <div class="card">
-            <h3>Rio das Onças</h3>
-            <p>Montanha-russa aquática com cenário da Amazônia e queda de 15 metros!</p>
-          </div>
-          <div class="card">
-            <h3>Aldeia Tupinambá</h3>
-            <p>Oficinas de pintura corporal, cerâmica, danças e contação de histórias indígenas.</p>
-          </div>
+<section id="ingressos" class="section">
+  <div class="container">
+    <h2>Compre Seus Ingressos</h2>
+    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--sombra); max-width: 700px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div style="flex: 1; min-width: 200px;">
+          <label for="adultos">Adultos (R$ 89,90)</label><br>
+          <input type="number" id="adultos" min="0" value="0" style="width: 100%; padding: 0.6rem; margin-top: 0.4rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+          <label for="criancas">Crianças (R$ 59,90)</label><br>
+          <input type="number" id="criancas" min="0" value="0" style="width: 100%; padding: 0.6rem; margin-top: 0.4rem; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
         </div>
       </div>
-    </section>
 
-    <section id="ingressos" class="section">
-      <div class="container">
-        <h2>Ingressos</h2>
-        <div class="tickets">
-          <div class="ticket">
-            <h3>Adulto</h3>
-            <p class="price">R$ 89,90</p>
-            <p>13 anos ou mais</p>
-          </div>
-          <div class="ticket">
-            <h3>Criança</h3>
-            <p class="price">R$ 59,90</p>
-            <p>3 a 12 anos</p>
-          </div>
-          <div class="ticket">
-            <h3>Combo Família</h3>
-            <p class="price">R$ 249,90</p>
-            <p>2 adultos + 2 crianças</p>
-          </div>
-        </div>
-        <div style="text-align: center;">
-          <a href="https://wa.me/5511987654321?text=Olá! Gostaria de comprar ingressos para o Pindorama Park." 
-             class="btn" target="_blank" rel="noopener">
-            Comprar pelo WhatsApp
-          </a>
-        </div>
+      <div style="text-align: center; margin: 1.5rem 0; padding: 1rem; background: #f0f9f0; border-radius: 8px;">
+        <p style="font-size: 1.1rem; margin: 0;">Total: <strong id="total">R$ 0,00</strong></p>
       </div>
-    </section>
 
-    <section id="localizacao" class="section">
-      <div class="container">
-        <h2>Localização</h2>
-        <p style="text-align: center; font-size: 1.1rem;">
-          Rodovia SP-350, km 128 – Parque Ecológico Pindorama<br>
-          São Paulo, SP – CEP 13500-000
+      <div style="text-align: center;">
+        <button id="whatsapp-btn" class="btn" style="padding: 0.9rem 2rem; font-size: 1.1rem;">
+          Confirmar Compra via WhatsApp
+        </button>
+        <p style="font-size: 0.9rem; color: #666; margin-top: 1rem;">
+          Seu carrinho será enviado automaticamente para nosso atendimento.
         </p>
-        <div class="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.123456789012!2d-47.40234567890123!3d-22.301234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDE4JzA0LjUiUyA0N8KwMjQnMDguNSJX!5e0!3m2!1spt-BR!2sbr!4v1710000000000!5m2!1spt-BR!2sbr"
-            width="100%"
-            height="350"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
       </div>
-    </section>
-
-    <section id="contato" class="section">
-      <div class="container">
-        <h2>Contato</h2>
-        <div class="contact-info">
-          <p>📧 contato@pindoromapark.com.br</p>
-          <p>📞 (11) 98765-4321</p>
-          <p>🕒 Funcionamento: Qua a Dom, 9h às 18h</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Pindorama Park. Todos os direitos reservados.</p>
-      <p>Inspirado na riqueza cultural e natural do Brasil.</p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script>
-    // Alternar menu mobile
-    document.querySelector('.menu-toggle').addEventListener('click', () => {
-      document.querySelector('.menu').classList.toggle('active');
-    });
+<script>
+  // Atualiza o total sempre que os valores mudam
+  const adultInput = document.getElementById('adultos');
+  const childInput = document.getElementById('criancas');
+  const totalDisplay = document.getElementById('total');
+  const whatsappBtn = document.getElementById('whatsapp-btn');
 
-    // Fechar menu ao clicar em um link (mobile)
-    document.querySelectorAll('.menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.querySelector('.menu').classList.remove('active');
-      });
-    });
-  </script>
-</body>
-</html>
+  const PRECO_ADULTO = 89.90;
+  const PRECO_CRIANCA = 59.90;
+  const NUMERO_WHATSAPP = '5511987654321'; // 🔁 Substitua pelo seu número (com DDD e país)
+
+  function atualizarTotal() {
+    const adultos = parseInt(adultInput.value) || 0;
+    const criancas = parseInt(childInput.value) || 0;
+    const total = (adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA);
+    totalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+  }
+
+  adultInput.addEventListener('input', atualizarTotal);
+  childInput.addEventListener('input', atualizarTotal);
+
+  // Gerar link do WhatsApp com o resumo da compra
+  whatsappBtn.addEventListener('click', () => {
+    const adultos = parseInt(adultInput.value) || 0;
+    const criancas = parseInt(childInput.value) || 0;
+    if (adultos === 0 && criancas === 0) {
+      alert('Por favor, selecione pelo menos um ingresso.');
+      return;
+    }
+
+    const total = ((adultos * PRECO_ADULTO) + (criancas * PRECO_CRIANCA)).toFixed(2);
+    let mensagem = `Olá! Gostaria de comprar ingressos para o Pindorama Park:\n\n`;
+    if (adultos > 0) mensagem += `- ${adultos} ingresso(s) adulto(s) - R$ ${(adultos * PRECO_ADULTO).toFixed(2)}\n`;
+    if (criancas > 0) mensagem += `- ${criancas} ingresso(s) criança(s) - R$ ${(criancas * PRECO_CRIANCA).toFixed(2)}\n`;
+    mensagem += `\nTotal: R$ ${total}\n\nAgradeço o atendimento!`;
+
+    // Codifica a mensagem para URL
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+    window.open(url, '_blank');
+  });
+
+  // Inicializa o total
+  atualizarTotal();
+</script>
