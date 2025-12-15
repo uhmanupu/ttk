@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <!-- ScrollReveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
   <style>
     :root {
       --cor-primaria: #2e7d32;
@@ -35,6 +37,17 @@
       color: var(--cor-texto);
       line-height: 1.6;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .container {
@@ -42,6 +55,8 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1rem;
+      position: relative;
+      z-index: 2;
     }
 
     /* Header */
@@ -127,6 +142,7 @@
       background-attachment: fixed;
       position: relative;
       overflow: hidden;
+      z-index: 1;
     }
 
     .hero::before {
@@ -137,6 +153,7 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(to bottom, rgba(10, 25, 13, 0.7), rgba(10, 25, 13, 0.9));
+      z-index: -1;
     }
 
     .hero-content {
@@ -244,6 +261,60 @@
       resize: vertical;
     }
 
+    /* PIX */
+    #pix-section {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    #pix-qr {
+      width: 180px;
+      height: 180px;
+      margin: 1rem auto;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .copy-btn {
+      background: rgba(46, 125, 50, 0.2);
+      color: #a5d6a7;
+      border: 1px solid var(--cor-vidro-borda);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      transition: background 0.3s;
+    }
+
+    .copy-btn:hover {
+      background: rgba(76, 175, 80, 0.3);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #2e7d32;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      z-index: 3000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Carrinho */
     #cart-container {
       margin-top: 2.5rem;
@@ -333,6 +404,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Partículas de fundo -->
+  <div id="tsparticles"></div>
 
   <header>
     <div class="container">
@@ -424,6 +498,17 @@
           </div>
         </div>
 
+        <!-- PIX Payment Option -->
+        <div id="pix-section" class="glass-card" data-sr>
+          <h3 style="color: #a5d6a7; margin-bottom: 1rem;">Pague com PIX</h3>
+          <p style="margin-bottom: 1rem;">Escaneie o QR Code ou copie a chave abaixo:</p>
+          <div id="pix-qr">QR Code PIX<br>(simulado)</div>
+          <div style="font-size: 0.9rem; margin: 0.5rem 0; word-break: break-all;">
+            pindorama@park.com.br
+          </div>
+          <button class="copy-btn" onclick="copiarChavePIX()">Copiar Chave PIX</button>
+        </div>
+
         <div id="checkout-modal">
           <div>
             <h3 style="color: #a5d6a7;">Compra Finalizada!</h3>
@@ -485,7 +570,33 @@
     </div>
   </footer>
 
+  <!-- Toast de notificação -->
+  <div id="toast" class="toast">Chave PIX copiada!</div>
+
   <script>
+    // Partículas (estilo folhas flutuantes)
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      particles: {
+        number: { value: 30, density: { enable: true, value_area: 800 } },
+        color: { value: "#4caf50" },
+        shape: { type: "circle" },
+        opacity: { value: 0.2, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.1 } },
+        size: { value: 4, random: true },
+        move: {
+          enable: true,
+          speed: 0.8,
+          direction: "top-right",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false
+        }
+      },
+      interactivity: { detect_on: "canvas", events: { onhover: { enable: false } } },
+      background: { color: "transparent" }
+    });
+
     // ScrollReveal
     ScrollReveal().reveal('[data-sr]', {
       duration: 800,
@@ -592,7 +703,17 @@
       atualizarCarrinho();
     });
 
-    // Formulário de contato com feedback
+    // PIX
+    function copiarChavePIX() {
+      const chave = "pindorama@park.com.br";
+      navigator.clipboard.writeText(chave).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
+      });
+    }
+
+    // Formulário
     const form = document.getElementById('contact-form');
     const messageDiv = document.getElementById('form-message');
     if (form) {
